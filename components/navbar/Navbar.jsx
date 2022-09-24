@@ -1,9 +1,10 @@
 import React from 'react'
 import Head from 'next/head';
 import Image from 'next/image';
-import JRlogo from '../public/jira-logo2.png';
+import JRlogo from '../../public/jira-logo2.png';
 import 'font-awesome/css/font-awesome.min.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
+import {styles} from '../../styles/Home.module.scss';
 // import { faAmbulance, faAnchor,fath,faAbacus} from '@fortawesome/free-solid-svg-icons'
 // import 'bootstrap';
 function Navbar() {
@@ -16,17 +17,17 @@ function Navbar() {
       </Head>
       <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-    <FontAwesomeIcon icon="fa-solid fa-grid" />
-    <Image src={JRlogo} alt="Vercel Logo" width={20} height={20} />
-    Navbar</a>
+  <BsFillGrid3X3GapFill className="" style={{"margin-right":"10px"}}/>
+    <a class="navbar-brand" style={{"color":"gray","fontSize":"14px","lineHeight":"20px","fontWeight":"400","marginRight":"30px"}}  href="#">
+    <Image src={JRlogo} alt="Vercel Logo" width={15} height={15} />
+    Jira Software </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span className="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a className={`nav-link dropdown-toggle`} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Yor Work
           </a>
           <ul class="dropdown-menu">
