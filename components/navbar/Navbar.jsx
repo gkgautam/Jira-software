@@ -4,7 +4,8 @@ import Image from 'next/image';
 import JRlogo from '../../public/jira-logo2.png';
 import 'font-awesome/css/font-awesome.min.css';
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
-import {styles} from '../../styles/Home.module.scss';
+import styles from './Navbar.module.scss'
+// import {styles} from '../../styles/Home.module.scss';
 // import { faAmbulance, faAnchor,fath,faAbacus} from '@fortawesome/free-solid-svg-icons'
 // import 'bootstrap';
 function Navbar() {
