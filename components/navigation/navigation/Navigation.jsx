@@ -5,7 +5,7 @@ import Sidebar from '../sidebar/Sidebar'
 function Navigation() {
   return (
     <>
-    <aside className='main-sidebar border border-primary d-flex row p-0 m-0'>
+    <aside className='main-sidebar d-flex row p-0 m-0'>
         <Navbarleft/>
         <Sidebar/>
         </aside>

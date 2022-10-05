@@ -6,7 +6,7 @@ function Layout({children}) {
   return (
     <>
     <Navbar/>
-        <main className='page-container row border border-secondary p-0 m-0'>
+        <main className='page-container row p-0 m-0'>
         <div className='sidebar-container col-3 m-0 p-0'>
         <Navigation/>
         </div>
