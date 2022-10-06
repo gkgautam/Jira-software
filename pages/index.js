@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import ActiveSprint from '../components/activeSprintComponents/ActiveSprint';
 import styles from '../styles/Home.module.scss'
 import Homepage from './homepage';
 // import 'font-awesome/css/font-awesome.min.css'
@@ -21,9 +22,7 @@ export default function Home() {
     //   </footer>
     // </div>
     <>
-      <h1>
-        I am default Homepage "Index"
-      </h1>
+      <ActiveSprint/>
     </>
   )
   

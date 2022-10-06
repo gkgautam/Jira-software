@@ -13,7 +13,7 @@ function Sidebar() {
           </div>
         </div>
         <div className='project-speification'>
-          <h6 className='m-0' style={{ "color": "rgb(66 82 110)", "fontSize": "15px" }}>React Jira Project</h6>
+          <h6 className='m-0' style={{ "color": "rgb(66 82 110)", "fontSize": "15px" }}>Jira Project React</h6>
           <div className='project-type'>
             <p className='m-0' style={{ "color": "rgb(94 108 132)", "fontSize": "13px" }}>Software Project</p>
           </div>
