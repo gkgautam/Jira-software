@@ -5,12 +5,13 @@ import Navigation from './navigation/navigation/Navigation';
 function Layout({children}) {
   return (
     <>
-    <Navbar/>
         <main className='page-container row p-0 m-0'>
-        <div className='sidebar-container col-3 m-0 p-0'>
+    <Navbar/>
+
+        <div className='sidebar-container col-3 m-0 p-0' style={{"position":"fixed","overflowX":"hidden","left":"0","height":"100%","zIndex":"1","top":"54px"}}>
         <Navigation/>
         </div>
-        <div className='page-content-container  col-9 m-0 p-3 '>
+        <div className='page-content-container  col-9 p-3 ' style={{"marginLeft":"316px","marginTop":"54px"}}>
         {children}
         </div>
         </main>

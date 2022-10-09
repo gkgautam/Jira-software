@@ -1,4 +1,6 @@
 import React from 'react'
+import SubtaskCard from './SubtaskCard'
+import SubtaskCard2 from './SubtaskCard2'
 
 function StorySubtask() {
     return (
@@ -14,7 +16,7 @@ function StorySubtask() {
                    
                 </div>
                 <div className='custom-secondary-btn' style={{ "fontSize": "10px", "fontWeight": "500", "backgroundColor": "rgba(9,30,66,0.04)", "padding": "2px", "borderRadius": "2px", "lineHeight": "20px", "color": "#42526E","height":"130px" }}>
-                   
+                   <SubtaskCard/>
                 </div>
                 <div className='custom-secondary-btn' style={{ "fontSize": "10px", "fontWeight": "500", "backgroundColor": "rgba(9,30,66,0.04)", "padding": "2px", "borderRadius": "2px", "lineHeight": "20px", "color": "#42526E","height":"130px" }}>
                    
@@ -23,7 +25,7 @@ function StorySubtask() {
                    
                 </div>
                 <div className='custom-secondary-btn' style={{ "fontSize": "10px", "fontWeight": "500", "backgroundColor": "rgba(9,30,66,0.04)", "padding": "2px", "borderRadius": "2px", "lineHeight": "20px", "color": "#42526E","height":"130px" }}>
-                   
+                   <SubtaskCard2/>
                 </div>
             </div>
         </>

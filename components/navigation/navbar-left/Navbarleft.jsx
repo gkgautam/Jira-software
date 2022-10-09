@@ -8,7 +8,7 @@ import styles from './Navbarleft.module.scss';
 function Navbarleft() {
     return (
         <>
-            <div className='navbarLeft col-3 d-flex flex-column justify-content-between py-3 px-0' style={{ "backgroundColor": "rgb(7 71 166)", "color": "white","justifyContent":"center","gap":"289px","width":"64px" }}>
+            <div className='navbarLeft col-3 d-flex flex-column justify-content-between py-3 px-0' style={{ "backgroundColor": "rgb(7 71 166)", "color": "white","justifyContent":"center","gap":"291px","width":"64px" }}>
             <div className='upper-icons d-flex flex-column align-items-center pe-0'>
                 <div className={`jiralogo-icon ${styles.icon}`} >
                     <svg className="w-8 h-8 text-textLogo"
