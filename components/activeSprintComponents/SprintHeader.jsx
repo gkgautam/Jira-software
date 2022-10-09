@@ -20,12 +20,18 @@ function SprintHeader() {
             <span className='mt-1' style={{ "fontSize": "14px", "color": "reg(66,82,110)", "marginTop": "4px" }}>2 days remaining</span>
           </div>
           <div className='complete-btn'>
-            <span style={{ "fontSize": "14px", "color": "reg(66,82,110)", "backgroundColor": "rgb(235,236,240)", "padding": "3px", "borderRadius": "2px" }}>complete sprint</span>
+            {/* <span style={{ "fontSize": "14px", "color": "reg(66,82,110)", "backgroundColor": "rgb(235,236,240)", "padding": "3px", "borderRadius": "2px" }}>complete sprint</span> */}
+            <div className='custom-pirmary-btn' style={{"fontSize":"14px","backgroundColor": "rgba(9,30,66,0.04)", "padding": "1px 6px", "borderRadius": "2px","lineHeight":"24px","color":"#42526E"}}>
+                            complete Sprint
+                        </div>
           </div>
           <div className='share'>
             <svg width="20" height="20" viewBox="0 0 24 24" role="presentation"><g fill="currentColor" fillRule="evenodd"><path d="M6 15a3 3 0 100-6 3 3 0 000 6zm0-2a1 1 0 110-2 1 1 0 010 2zm12-4a3 3 0 100-6 3 3 0 000 6zm0-2a1 1 0 110-2 1 1 0 010 2zm0 14a3 3 0 100-6 3 3 0 000 6zm0-2a1 1 0 110-2 1 1 0 010 2z" fillRule="nonzero"></path><path d="M7 13.562l8.66 5 1-1.732-8.66-5z"></path><path d="M7 10.83l1 1.732 8.66-5-1-1.732z"></path></g></svg>
           </div>
-          <div>...</div>
+          {/* <div>...</div> */}
+          <div className='custom-pirmary-btn' style={{"fontSize":"24px","fontWeight":"500","backgroundColor": "rgba(9,30,66,0.04)", "padding": "1px 6px", "borderRadius": "2px","lineHeight":"16px","color":"#42526E","paddingBottom":"6px"}}>
+                            <span style={{"verticalAlign":"super"}}>...</span>
+                        </div>
         </div>
       </div>
     </>
