@@ -11,7 +11,7 @@ function Navbarleft() {
             <div className='navbarLeft col-3 d-flex flex-column justify-content-between py-3 px-0' style={{ "backgroundColor": "rgb(7 71 166)", "color": "white","justifyContent":"center","gap":"289px","width":"64px" }}>
             <div className='upper-icons d-flex flex-column align-items-center pe-0'>
                 <div className={`jiralogo-icon ${styles.icon}`} >
-                    <svg class="w-8 h-8 text-textLogo"
+                    <svg className="w-8 h-8 text-textLogo"
                         viewBox="0 0 32 32"
                         xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true">
@@ -21,10 +21,10 @@ function Navbarleft() {
                                 y1="-14.936%"
                                 y2="45.215%"
                                 id="uid11-1">
-                                <stop stop-color="#DEEBFF"
-                                    stop-opacity="0.4"
+                                <stop stopColor="#DEEBFF"
+                                    stopOpacity="0.4"
                                     offset="0%"></stop>
-                                <stop stop-color="#DEEBFF"
+                                <stop stopColor="#DEEBFF"
                                     offset="100%"></stop>
                             </linearGradient>
                             <linearGradient x1="0%"
@@ -32,10 +32,10 @@ function Navbarleft() {
                                 y1="118.55%"
                                 y2="63.971%"
                                 id="uid11-2">
-                                <stop stop-color="#DEEBFF"
-                                    stop-opacity="0.4"
+                                <stop stopColor="#DEEBFF"
+                                    stopOpacity="0.4"
                                     offset="0%"></stop>
-                                <stop stop-color="#DEEBFF"
+                                <stop stopColor="#DEEBFF"
                                     offset="100%"></stop>
                             </linearGradient>
                         </defs>

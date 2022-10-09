@@ -7,8 +7,8 @@ function SprintOperations() {
 
                 <div className='operation-controls row col-8'>
                     <div className='search-board col-3 pe-0' style={{"marginTop":"3px"}}>
-                        <form class="m-0" role="search">
-                            <input class="form-control  p-0 m-0" type="search" placeholder="Search this board" aria-label="Search" style={{ "border": "1.5px solid #DFE1E6", "width": "96%", "boxShadow": "none","fontSize":"14px" }}></input>
+                        <form className="m-0" role="search">
+                            <input className="form-control  p-0 m-0" type="search" placeholder="Search this board" aria-label="Search" style={{ "border": "1.5px solid #DFE1E6", "width": "96%", "boxShadow": "none","fontSize":"14px" }}></input>
                         </form>
                     </div>
 

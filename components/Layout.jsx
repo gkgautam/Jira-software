@@ -10,7 +10,7 @@ function Layout({children}) {
         <div className='sidebar-container col-3 m-0 p-0'>
         <Navigation/>
         </div>
-        <div className='page-content-container border border-danger col-9 m-0 p-3 '>
+        <div className='page-content-container  col-9 m-0 p-3 '>
         {children}
         </div>
         </main>
