@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Styles from './SprintOperations.module.scss'
 
 function SprintOperations() {
     return (
@@ -14,25 +15,25 @@ function SprintOperations() {
 
                     <div className='all-assignee col-4 p-0'>
                         <div className='assignees d-flex' style={{ "position": "relative" }}>
-                            <div className='individual-asignee' style={{ "borderRadius": "50%", "backgroundColor": "rgb(7 71 166)", "color": "#fff", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute" }}>
+                            <div className={Styles.individual_asignee} style={{ "borderRadius": "50%", "backgroundColor": "rgb(7 71 166)", "color": "#fff", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute" }}>
                                 G
                             </div>
-                            <div className='individual-asignee' style={{ "borderRadius": "50%", "backgroundColor": "#008495", "color": "#000", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "24px" }}>
+                            <div className={Styles.individual_asignee} style={{ "borderRadius": "50%", "backgroundColor": "#008495", "color": "#000", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "24px" }}>
                                 P
                             </div>
-                            <div className='individual-asignee' style={{ "borderRadius": "50%", "backgroundColor": "orange", "color": "#000", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "48px" }}>
+                            <div className={Styles.individual_asignee} style={{ "borderRadius": "50%", "backgroundColor": "orange", "color": "#000", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "48px" }}>
                                 DB
                             </div>
-                            <div className='individual-asignee' style={{ "borderRadius": "50%", "backgroundColor": "#008495", "color": "#000", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "72px" }}>
+                            <div className={Styles.individual_asignee} style={{ "borderRadius": "50%", "backgroundColor": "#008495", "color": "#000", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "72px" }}>
                                 AM
                             </div>
-                            <div className='individual-asignee' style={{ "borderRadius": "50%", "backgroundColor": "black", "color": "#fff", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "96px" }}>
+                            <div className={Styles.individual_asignee} style={{ "borderRadius": "50%", "backgroundColor": "black", "color": "#fff", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "96px" }}>
                                 R
                             </div>
-                            <div className='individual-asignee' style={{ "borderRadius": "50%", "backgroundColor": "rgb(7 71 166)", "color": "#000", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "120px" }}>
+                            <div className={Styles.individual_asignee} style={{ "borderRadius": "50%", "backgroundColor": "rgb(7 71 166)", "color": "#fff", "height": "30px", "width": "30px", "fontSize": "16px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "120px" }}>
                                 M
                             </div>
-                            <div className='individual-asignee' style={{ "borderRadius": "50%", "backgroundColor": "rgb(235,236,240)", "color": "gray", "height": "30px", "width": "30px", "fontSize": "12px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "144px" }}>
+                            <div className={Styles.individual_asignee} style={{ "borderRadius": "50%", "backgroundColor": "rgb(235,236,240)", "color": "gray", "height": "30px", "width": "30px", "fontSize": "12px", "textAlign": "center", "border": "2px solid #fff", "position": "absolute", "left": "144px" }}>
                                 <span style={{"verticalAlign":"-webkit-baseline-middle"}}>+13</span>
                             </div>
                         </div>

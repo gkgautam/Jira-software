@@ -6,4 +6,10 @@
     width: 30px;
     height: 30px;
     margin: 5px 0;
+    border-radius: 50%;
+}
+.icon:hover{
+    cursor: pointer;
+    background-color: rgb(34, 97, 192);
+    border: 2px solid rgb(34, 97, 192);
 }

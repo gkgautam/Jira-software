@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsSearch } from "react-icons/bs";
 import { FiPlus } from "react-icons/fi";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import Image from 'next/image';
 import profileimg from '../../../public/jiraImages/profile.jpg';
 import styles from './Navbarleft.module.scss';
+import CreateIssueModal from '../../modals/CreateIssueModal';
 function Navbarleft() {
+  const [showModal, setShowModal]= useState(false);
     return (
         <>
             <div className='navbarLeft col-3 d-flex flex-column justify-content-between py-3 px-0' style={{ "backgroundColor": "rgb(7 71 166)", "color": "white","justifyContent":"center","gap":"291px","width":"64px" }}>
@@ -54,7 +56,9 @@ function Navbarleft() {
                     {/* <BsSearch  /> */}
                     <svg viewBox="64 64 896 896" focusable="false" fill="currentColor" width="20px" height="20px" data-icon="search" aria-hidden="true"><path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path></svg>
                 </div>
-                <div className={`create-icon ${styles.icon}`}>
+                <div role="button" className={`create-icon ${styles.icon}`} onClick={()=>{
+                    setShowModal(true);
+                }}>
                     {/* <FiPlus /> */}
                     <svg viewBox="64 64 896 896" focusable="false" fill="currentColor" width="20px" height="20px" data-icon="plus" aria-hidden="true"><defs><style></style></defs><path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"></path><path d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"></path></svg>
                 </div>
@@ -70,6 +74,9 @@ function Navbarleft() {
                 </div>
                 </div>
             </div>
+            <CreateIssueModal isVisible={showModal} onClose={()=>{
+                setShowModal(false);
+            }}/>
         </>
     )
 }
