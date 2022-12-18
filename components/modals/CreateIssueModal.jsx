@@ -1,11 +1,15 @@
-import React from 'react'
-// below line is to concert html to react component
+import React from 'react';
+import { Button } from 'react-bootstrap';
+import CustomSelect from '../customSelect/CustomSelect';
+import CustomSelectPriority from '../customSelect/CustomSelectPriority';
+import CustomSelectUsers from '../customSelect/CustomSelectUsers';
+// below line is to convert html to react component
 // https://magic.reactjs.net/htmltojsx.htm
 function CreateIssueModal({isVisible,onClose}) {
     if(!isVisible) return null;
   return (
-    <div className='d-flex align-items-center justify-content-center' style={{"position":"fixed","backgroundColor":"rgba(0, 0, 0, 0.3)","top":"0","left":"0","bottom":"0","right":"0","zIndex":"10"}}>
-    <div className='custom-modal-body modal-content p-4 mt-5' style={{"width":"700px", "backgroundColor":"#fff","zIndex":"11"}}>
+    <div className='d-flex align-items-center justify-content-center' style={{"position":"fixed","backgroundColor":"rgba(0, 0, 0, 0.3)","top":"0","left":"0","bottom":"0","right":"0","zIndex":"10","overflowY":"scroll","paddingTop":"20rem"}}>
+    <div className='custom-modal-body modal-content p-4' style={{"width":"700px", "backgroundColor":"#fff","zIndex":"11","height":"700px","marginBottom":"2rem"}}>
     
     <div  className='modal-heading d-flex justify-content-between'>
    <div className='Heading' style={{"fontSize":"20px"}}>Create Issue</div>
@@ -15,17 +19,13 @@ function CreateIssueModal({isVisible,onClose}) {
     
     {/* forms start */}
     <form>
-        <div className="form-group">
-          <label htmlFor="exampleFormControlInput1">Issue Type</label>
-          <input type="Text" className="form-control" id="exampleFormControlInput1" placeholder="" />
+    <div className="form-group">
+          <label htmlFor="exampleFormControlSelect1">Issue Type</label>
+        <CustomSelect/>
         </div>
         <div className="form-group">
           <label htmlFor="exampleFormControlSelect1">Issue Priority</label>
-          <select className="form-control" id="exampleFormControlSelect1">
-            <option>Medium</option>
-            <option>Low</option>
-            <option>High</option>
-          </select>
+          <CustomSelectPriority/>
         </div>
         <div className="form-group">
           <label htmlFor="exampleFormControlInput1">Short Summary</label>
@@ -35,18 +35,17 @@ function CreateIssueModal({isVisible,onClose}) {
           <label htmlFor="exampleFormControlTextarea1">Description</label>
           <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
         </div>
-        <div className="form-group">
+        <div className="form-group my-2">
           <label htmlFor="exampleFormControlSelect1">Reporter</label>
-          <select className="form-control" id="exampleFormControlSelect1">
-            <option>Bilal</option>
-            <option>Govind</option>
-            <option>Aman</option>
-            <option>Pawan</option>
-          </select>
+        <CustomSelectUsers/>
         </div>
-        <div className="form-group">
+        <div className="form-group my-2">
           <label htmlFor="exampleFormControlInput1">Asignee</label>
-          <input type="Text" className="form-control" id="exampleFormControlInput1" placeholder="" />
+          {/* <input type="Text" className="form-control" id="exampleFormControlInput1" placeholder="" /> */}
+      <CustomSelectUsers/>
+        </div>
+      <div className="form-group my-5">
+      <button className='btn btn-primary' onClick={()=>onClose()}>Submit</button>
         </div>
       </form>
 
