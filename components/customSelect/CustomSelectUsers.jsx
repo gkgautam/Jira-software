@@ -6,7 +6,7 @@ import storyLogo from '../../public/jiraImages/storylogo.svg';
 import taskLogo from '../../public/jiraImages/Tasklogo.svg';
 import Image from 'next/image';
 
-function CustomSelectUsers() {
+function CustomSelectUsers(props) {
   // const optionsArr = [<li className={`list-group-item ${styles.option_item} p-0 m-0`}>
   //   <div className='selectField d-flex align-items-center p-1 ps-2'>
   //     <Image className='' src={buglogo} width={20} height={20} alt="Bug logo" />
@@ -23,69 +23,43 @@ function CustomSelectUsers() {
   //     <p className='m-0 ps-2'>TASK</p>
   //   </div>
   // </li>];
+//   const [st1, setSt1] = useState('');
+// const dropdowntest = (event)=>{
+// console.log('tesfunc', event.target.value);
+// setSt1({[event.target.name]:event.target.value});
+// console.log('hookval',st1);
+// }
 const options = [
-  { value: 'bug', label:
+  { value: 'govind',index:0, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={buglogo} width={20} height={20} alt="Bug logo" />
     <p className='m-0 ps-2'>GOVIND</p>
   </div>},
-  { value: 'story', label:
+  { value: 'bilal', index:1, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={storyLogo} width={20} height={20} alt="Task logo" />
     <p className='m-0 ps-2'>BILAL</p>
   </div> },
-  { value: 'task', label:
+  { value: 'pramod', index:2, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={taskLogo} width={20} height={20} alt="Task logo" />
     <p className='m-0 ps-2'>PRAMOD</p>
   </div>
 },
-{ value: 'bug', label:
+{ value: 'sudeep', index:3, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={buglogo} width={20} height={20} alt="Bug logo" />
     <p className='m-0 ps-2'>SUDEEP</p>
   </div>}
 ]
-  // const [isActive, setIsActive] = useState(false);
+const [dropdownOptions, setDropdownOptions] = useState(options[0]);
   return (
     <>
       <div className={`${styles.selector}`}>
-        {/* <div className={`${styles.selectField} d-flex align-items-center p-1 ps-2 mb-1`}>
-          <Image className='' src={taskLogo} width={20} height={20} alt="Task logo" />
-          <p className='m-0 ps-2'>TASK</p>
-        </div> */}
         <div className={`${styles.options}`}>
-          {/* <ul className='p-0 m-0'> */}
-            {/* <li className={`list-group-item ${styles.option_item} p-0 m-0`}>
-              <div className='selectField d-flex align-items-center p-1 ps-2'>
-                <Image className='' src={buglogo} width={20} height={20} alt="Bug logo" />
-                <p className='m-0 ps-2'>BUG</p>
-              </div>
-            </li>
-            <li className={`list-group-item ${styles.option_item} p-0 m-0`}>
-              <div className='selectField d-flex align-items-center p-1 ps-2'>
-                <Image className='' src={storyLogo} width={20} height={20} alt="Task logo" />
-                <p className='m-0 ps-2'>STORY</p>
-              </div>
-            </li>
-            <li className={`list-group-item ${styles.option_item} p-0 m-0`}>
-              <div className='selectField d-flex align-items-center p-1 ps-2'>
-                <Image className='' src={taskLogo} width={20} height={20} alt="Task logo" />
-                <p className='m-0 ps-2'>TASK</p>
-              </div>
-            </li> */}
-
-
-            {/* {
-              optionsArr.map((option)=>{
-                return option
-              })
-            } */}
-
-            <Select defaultValue={options[2]} options={options} />
-
-          {/* </ul> */}
-          
+            <Select value={dropdownOptions} name={props.name} options={options} onChange={(event)=>{
+              setDropdownOptions(options[event.index])
+            }} />
         </div>
       </div>
     </>
