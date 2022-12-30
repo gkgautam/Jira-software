@@ -52,13 +52,14 @@ const options = [
     <p className='m-0 ps-2'>SUDEEP</p>
   </div>}
 ]
-const [dropdownOptions, setDropdownOptions] = useState(options[0]);
+const [dropdownOptions, setDropdownOptions] = useState(options[0].value);
   return (
     <>
       <div className={`${styles.selector}`}>
         <div className={`${styles.options}`}>
             <Select value={dropdownOptions} name={props.name} options={options} onChange={(event)=>{
               setDropdownOptions(options[event.index])
+              props.setFormData({...props.formdata,[props.name]:event.value})
             }} />
         </div>
       </div>

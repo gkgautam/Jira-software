@@ -1,19 +1,45 @@
 import React, {useState} from 'react';
 import { Button } from 'react-bootstrap';
-import CustomSelect from '../customSelect/CustomSelect';
+import CustomSelectIssueType from '../customSelect/CustomSelectIssueType';
 import CustomSelectPriority from '../customSelect/CustomSelectPriority';
 import CustomSelectUsers from '../customSelect/CustomSelectUsers';
 // below line is to convert html to react component
 // https://magic.reactjs.net/htmltojsx.htm
 function CreateIssueModal({isVisible,onClose}) {
   const [formdata, setFormData] = useState({
+    issueType:'',
+    issuePriority:'',
     summary:'',
     description:'',
     reporter:'',
     assignee:''
   });
-  const getFormData = async (e)=>{
+  const getFormData = (e)=>{
     setFormData({ ...formdata, [e.target.name]: e.target.value });
+  }
+  const submitIssueform = async (e)=>{
+    e.preventDefault();
+    const {summary,description,reporter,assignee,issueType,issuePriority} = formdata;
+    try{
+      const res = await fetch("/api/createIssueApi", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({summary,description,reporter,assignee,issueType,issuePriority})
+      });
+      const data = await res.json();
+      console.log('saved data',data);
+      console.log('response',res);
+      if(res.status === 201){
+        alert('Issue created successfully!',);
+        onClose();
+      }
+    }
+    catch(error){
+      console.log('server error here.')
+    }
+
   }
     if(!isVisible) return null;
   return (
@@ -28,33 +54,33 @@ function CreateIssueModal({isVisible,onClose}) {
     
 
     <form>
-    {/* <div className="form-group">
+    <div className="form-group">
           <label htmlFor="exampleFormControlSelect1">Issue Type</label>
-        <CustomSelect/>
+        <CustomSelectIssueType formdata={formdata} setFormData={setFormData} name='issueType' id='issueType'/>
         </div>
         <div className="form-group">
           <label htmlFor="exampleFormControlSelect1">Issue Priority</label>
-          <CustomSelectPriority/>
-        </div> */}
+          <CustomSelectPriority formdata={formdata} setFormData={setFormData} name='issuePriority' id='issuePriority'/>
+        </div>
         <div className="form-group">
           <label htmlFor="exampleFormControlInput1">Short Summary</label>
           <input type="Text" name='summary' className="form-control" id="exampleFormControlInput1" value={formdata.summary} onChange={getFormData} placeholder="" />
         </div>
         <div className="form-group">
           <label htmlFor="exampleFormControlTextarea1">Description</label>
-          <textarea className="form-control" name='desc' id="exampleFormControlTextarea1" value={formdata.description} onChange={getFormData} rows={3} />
+          <textarea className="form-control" name='description' id="exampleFormControlTextarea1" value={formdata.description} onChange={getFormData}  />
         </div>
         <div className="form-group my-2">
           <label htmlFor="exampleFormControlSelect1">Reporter</label>
-        <CustomSelectUsers name='reporter' id='reporter'/>
+        <CustomSelectUsers formdata={formdata} setFormData={setFormData} name='reporter' id='reporter'/>
         </div>
         <div className="form-group my-2">
           <label htmlFor="exampleFormControlInput1">Asignee</label>
           {/* <input type="Text" className="form-control" id="exampleFormControlInput1" placeholder="" /> */}
-        <CustomSelectUsers name='Assignee' id='asignee'/>
+        <CustomSelectUsers formdata={formdata} setFormData={setFormData} name='assignee' id='asignee'/>
         </div>
       <div className="form-group my-5">
-      <button className='btn btn-primary'>Submit</button>
+      <button className='btn btn-primary' onClick={submitIssueform}>Submit</button>
         </div>
       </form>
 

@@ -6,41 +6,26 @@ import storyLogo from '../../public/jiraImages/storylogo.svg';
 import taskLogo from '../../public/jiraImages/Tasklogo.svg';
 import Image from 'next/image';
 
-function CustomSelectPriority(props) {
-  // const optionsArr = [<li className={`list-group-item ${styles.option_item} p-0 m-0`}>
-  //   <div className='selectField d-flex align-items-center p-1 ps-2'>
-  //     <Image className='' src={buglogo} width={20} height={20} alt="Bug logo" />
-  //     <p className='m-0 ps-2'>BUG</p>
-  //   </div>
-  // </li>, <li className={`list-group-item ${styles.option_item} p-0 m-0`}>
-  //   <div className='selectField d-flex align-items-center p-1 ps-2'>
-  //     <Image className='' src={storyLogo} width={20} height={20} alt="Task logo" />
-  //     <p className='m-0 ps-2'>STORY</p>
-  //   </div>
-  // </li>, <li className={`list-group-item ${styles.option_item} p-0 m-0`}>
-  //   <div className='selectField d-flex align-items-center p-1 ps-2'>
-  //     <Image className='' src={taskLogo} width={20} height={20} alt="Task logo" />
-  //     <p className='m-0 ps-2'>TASK</p>
-  //   </div>
-  // </li>];
+function CustomSelectIssueType(props) {
 const options = [
-  { value: 'medium',index:0, label:
+  { value: 'bug', index:0, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={buglogo} width={20} height={20} alt="Bug logo" />
-    <p className='m-0 ps-2'>MEDIUM</p>
+    <p className='m-0 ps-2'>BUG</p>
   </div>},
-  { value: 'low',index:1, label:
+  { value: 'story', index:1, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={storyLogo} width={20} height={20} alt="Task logo" />
-    <p className='m-0 ps-2'>LOW</p>
+    <p className='m-0 ps-2'>STORY</p>
   </div> },
-  { value: 'high',index:2, label:
+  { value: 'task', index:2, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={taskLogo} width={20} height={20} alt="Task logo" />
-    <p className='m-0 ps-2'>HIGH</p>
+    <p className='m-0 ps-2'>TASK</p>
   </div>
 }
 ]
+
 const [dropdownOptions, setDropdownOptions] = useState(options[0].value);
   return (
     <>
@@ -56,4 +41,4 @@ const [dropdownOptions, setDropdownOptions] = useState(options[0].value);
   )
 }
 
-export default CustomSelectPriority
+export default CustomSelectIssueType
