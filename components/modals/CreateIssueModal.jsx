@@ -37,7 +37,7 @@ function CreateIssueModal({isVisible,onClose}) {
       }
     }
     catch(error){
-      console.log('server error here.')
+      console.log('server error here2.')
     }
 
   }
