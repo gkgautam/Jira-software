@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import JRlogo from '../../public/jira-logo2.png';
@@ -6,10 +6,9 @@ import 'font-awesome/css/font-awesome.min.css';
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import profileimg from "../../public/jiraImages/profile.jpg";
 import styles from './Navbar.module.scss'
-// import {styles} from '../../styles/Home.module.scss';
-// import { faAmbulance, faAnchor,fath,faAbacus} from '@fortawesome/free-solid-svg-icons'
-// import 'bootstrap';
+import CreateIssueModal from '../modals/CreateIssueModal';
 function Navbar() {
+  const [showModal, setShowModal]= useState(false);
   return (
     <>
     <Head>
@@ -106,7 +105,9 @@ function Navbar() {
             <li><a className="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <button type="button" className="btn btn-primary btn-sm py-0" style={{"backgroundColor":"rgba(0,82,204,0.9)","height":"28px","marginTop":"5px","boxShadow":"none","border":"none"}}>Create</button>
+        <button type="button" className="btn btn-primary btn-sm py-0" style={{"backgroundColor":"rgba(0,82,204,0.9)","height":"28px","marginTop":"5px","boxShadow":"none","border":"none"}} onClick={()=>{
+          setShowModal(true);
+        }}>Create</button>
         
       </ul>
       <form className="m-0" role="search">
@@ -128,6 +129,9 @@ function Navbar() {
     </div>
   </div>
 </nav>
+<CreateIssueModal isVisible={showModal} onClose={()=>{
+                setShowModal(false);
+            }}/>
     </>
   )
 }
