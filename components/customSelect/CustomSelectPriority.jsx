@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import styles from './CustomSelect.module.scss';
-import buglogo from '../../public/jiraImages/Buglogo.svg';
-import storyLogo from '../../public/jiraImages/storylogo.svg';
-import taskLogo from '../../public/jiraImages/Tasklogo.svg';
+import mediumLogo from '../../public/jiraImages/medium.svg';
+import highestLogo from '../../public/jiraImages/highest.svg';
+import lowLogo from '../../public/jiraImages/low.svg';
+import lowestLogo from '../../public/jiraImages/lowest.svg';
+import highLogo from '../../public/jiraImages/high.svg';
 import Image from 'next/image';
 
 function CustomSelectPriority(props) {
@@ -26,18 +28,29 @@ function CustomSelectPriority(props) {
 const options = [
   { value: 'medium',index:0, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
-    <Image className='' src={buglogo} width={20} height={20} alt="Bug logo" />
+    <Image className='' src={mediumLogo} width={20} height={20} alt="Bug logo" />
     <p className='m-0 ps-2'>MEDIUM</p>
   </div>},
   { value: 'low',index:1, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
-    <Image className='' src={storyLogo} width={20} height={20} alt="Task logo" />
+    <Image className='' src={lowestLogo} width={20} height={20} alt="Task logo" />
+    <p className='m-0 ps-2'>LOWEST</p>
+  </div> },
+  { value: 'low',index:1, label:
+  <div className='selectField d-flex align-items-center px-1 ps-2'>
+    <Image className='' src={lowLogo} width={20} height={20} alt="Task logo" />
     <p className='m-0 ps-2'>LOW</p>
   </div> },
   { value: 'high',index:2, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
-    <Image className='' src={taskLogo} width={20} height={20} alt="Task logo" />
+    <Image className='' src={highLogo} width={20} height={20} alt="Task logo" />
     <p className='m-0 ps-2'>HIGH</p>
+  </div>
+},
+{ value: 'highest',index:2, label:
+  <div className='selectField d-flex align-items-center px-1 ps-2'>
+    <Image className='' src={highestLogo} width={20} height={20} alt="Task logo" />
+    <p className='m-0 ps-2'>HIGHEST</p>
   </div>
 }
 ]

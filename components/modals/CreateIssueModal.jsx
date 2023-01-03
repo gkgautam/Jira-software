@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Button } from 'react-bootstrap';
 import CustomSelectIssueType from '../customSelect/CustomSelectIssueType';
 import CustomSelectPriority from '../customSelect/CustomSelectPriority';
@@ -14,6 +14,10 @@ function CreateIssueModal({isVisible,onClose}) {
     reporter:'',
     assignee:''
   });
+
+  // useEffect(()=>{
+    
+  // },[]);
   const getFormData = (e)=>{
     setFormData({ ...formdata, [e.target.name]: e.target.value });
   }
@@ -34,6 +38,14 @@ function CreateIssueModal({isVisible,onClose}) {
       if(res.status === 201){
         alert('Issue created successfully!',);
         onClose();
+        setFormData({
+          issueType:'',
+          issuePriority:'',
+          summary:'',
+          description:'',
+          reporter:'',
+          assignee:''
+        });
       }
     }
     catch(error){
