@@ -3,7 +3,8 @@ import Image from 'next/image';
 import storyLogo from '../../public/jiraImages/storylogo.svg';
 import StorySubtask from './StorySubtask';
 
-function Story() {
+function Story(props) {
+    console.log('angelina',props.storydata);
     return (
         <>
             <div className='individual-story d-flex my-1'>
@@ -13,7 +14,7 @@ function Story() {
                 <Image src={storyLogo} alt="Storylogo" />
                 <a href=''>
                     <span style={{ "fontSize": "12px", "padding": "0 5px" }}>
-                        RECHARGE-2861
+                        RECHARGE-{props.storydata.projectId.toString().padStart(4,0)}
                     </span>
                 </a>
                 <div className='subtask-info align-self-center d-flex'>
@@ -25,7 +26,8 @@ function Story() {
                         1 sub-task
                     </span>
                     <span className='align-self-center' style={{ "fontSize": "14px", "padding": "0 2px", "color": "#5e6c84" }}>
-                        Calorie Computation | Calculating customers calorie level from BMI information provided
+                        {/* Calorie Computation | Calculating customers calorie level from BMI information provided */}
+                        {props.storydata.summary}
                     </span>
                 </div>
 

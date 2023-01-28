@@ -24,6 +24,10 @@ function CreateIssueModal({isVisible,onClose}) {
   const submitIssueform = async (e)=>{
     e.preventDefault();
     const {summary,description,reporter,assignee,issueType,issuePriority} = formdata;
+    if(summary == '' || description=='' || reporter=='' || assignee=='' || issueType==''||issuePriority==''){
+      alert('All Fields are required!');
+      return false;
+    }
     try{
       const res = await fetch("/api/createIssueApi", {
         method: "POST",

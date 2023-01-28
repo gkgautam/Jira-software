@@ -1,10 +1,12 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import ActiveSprint from '../components/activeSprintComponents/ActiveSprint';
-import styles from '../styles/Home.module.scss'
-import Homepage from './homepage';
+// import Head from 'next/head'
+// import Image from 'next/image'
+// import ActiveSprint from '../components/activeSprintComponents/ActiveSprint';
+// import styles from '../styles/Home.module.scss'
+// import Homepage from './homepage';
 // import 'font-awesome/css/font-awesome.min.css'
 // import 'bootstrap/dist/css/bootstrap';
+
+// import RapidBoardBreadcrum from "../components/activeSprintComponents/RapidBoardBreadcrum";
 
 export default function Home() {
   return (
@@ -22,7 +24,11 @@ export default function Home() {
     //   </footer>
     // </div>
     <>
-      <ActiveSprint/>
+      {/* <ActiveSprint/> */}
+      {/* <div className='breadcrum p-0 m-0'>
+        <RapidBoardBreadcrum/>
+        </div> */}
+      <h1>Welcome to Jira</h1>
     </>
   )
   

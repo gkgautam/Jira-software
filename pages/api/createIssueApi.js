@@ -8,7 +8,14 @@ const handler = async (req, res) => {
       if (!summary || !description || !reporter || !assignee) {
         res.status(400).json({ message: " All fields are Required!" });
       }
-      const data = new CreateIssue({summary,description,reporter,assignee,issueType,issuePriority});
+      const LatestIssue = await CreateIssue.findOne().sort({ _id: -1 });
+      let projectId;
+      if (LatestIssue) {
+        projectId = LatestIssue.projectId + 1;
+      } else {
+        projectId = 1;
+      }
+      const data = new CreateIssue({summary,description,reporter,assignee,issueType,issuePriority,projectId});
       const result = await data.save();
       if(result){
         res.status(201).json(result);

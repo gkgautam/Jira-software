@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const mySchema = new mongoose.Schema({
+  projectId:{
+    type:Number,
+    default:1
+  },
   issueType:{
     type:String,
     required:true
