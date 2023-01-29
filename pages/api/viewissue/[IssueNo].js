@@ -1,0 +1,29 @@
+import connectDB from "../../../middleware/database";
+import CreateIssue from "../../../model/createIssue";
+
+const handler = async (req, res)=>{
+
+
+    if(req.method == 'GET'){
+    
+        const { IssueNo } = req.query;
+        console.log('bachhan',req.query)
+    
+        try {
+    
+          const result = await CreateIssue.find({projectId:IssueNo});
+    
+          if(result){
+            res.status(201).json(result);
+          }
+          else{
+            res.status(500).json({message : "Technical Error, try again later"});
+          }
+        
+        } catch (error) {
+          console.log(error);
+        }
+      }
+}
+
+export default connectDB(handler);

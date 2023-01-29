@@ -1,7 +1,7 @@
 import React from 'react'
 import SprintContent from '../components/activeSprintComponents/SprintContent';
 import RapidBoardBreadcrum from '../components/activeSprintComponents/RapidBoardBreadcrum';
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch('http://localhost:3000/api/fetchIssuesApi')
   const data = await res.json();
   return {
