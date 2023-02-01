@@ -31,7 +31,7 @@ const options = [
     <Image className='' src={mediumLogo} width={20} height={20} alt="Bug logo" />
     <p className='m-0 ps-2'>MEDIUM</p>
   </div>},
-  { value: 'low',index:1, label:
+  { value: 'lowest',index:1, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={lowestLogo} width={20} height={20} alt="Task logo" />
     <p className='m-0 ps-2'>LOWEST</p>

@@ -21,6 +21,8 @@ export async function getServerSideProps(context) {
   }
 function IssueNo({data}) {
 console.log('honeysingh',data);
+// let parser = new DOMParser();
+// let descriptionHtml = parser.parseFromString(data[0].description, 'text/html');
     return (
         <>
             <div className='view-issue d-flex justify-content-center'>
@@ -50,7 +52,7 @@ console.log('honeysingh',data);
                         <h2 className='m-0' style={{ "color": "#172b4d", "fontSize": "14px", "fontWeight": "600", "lineHeight": "24px" }}>Description</h2>
                         <div className='description-text-container p-2' style={{ "fontSize": "14px", "fontWeight": "400", "fontStyle": "normal", "backgroundColor": "#EBECF0", "borderRadius": "5px" }} >
                             <div>
-                                <p>
+                                {/* <p>
                                     As an US client ,I want to view relevant health preferences on calorie page for Jenny Fresh plans
                                     As an US client ,I want to view relevant health preferences on calorie page for Jenny Fresh plans
                                     As an US client ,I want to view relevant health preferences on calorie page for Jenny Fresh plans
@@ -76,7 +78,9 @@ console.log('honeysingh',data);
                                     A date will be associated with each weigh-in
                                     An identifier will be added next to the weigh-in in the form of a colored pill that say Coach Input.  This will be the identifier that a coach entered this weight on behalf of the client
                                     The history will live at the bottom of the progress page
-                                </p>
+                                </p> */}
+                                {/* {descriptionHtml} */}
+                                <div dangerouslySetInnerHTML={{ __html: data[0].description}} />
                             </div>
                         </div>
                     </div>

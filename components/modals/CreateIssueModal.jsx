@@ -1,11 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,useRef} from 'react';
 import { Button } from 'react-bootstrap';
 import CustomSelectIssueType from '../customSelect/CustomSelectIssueType';
 import CustomSelectPriority from '../customSelect/CustomSelectPriority';
 import CustomSelectUsers from '../customSelect/CustomSelectUsers';
+import dynamic from 'next/dynamic';
 // below line is to convert html to react component
 // https://magic.reactjs.net/htmltojsx.htm
 function CreateIssueModal({isVisible,onClose}) {
+  const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
+  const [content, setContent] = useState('');
+  const editor = useRef(null);
+	// const [content, setContent] = useState('');
   const [formdata, setFormData] = useState({
     issueType:'',
     issuePriority:'',
@@ -19,6 +24,7 @@ function CreateIssueModal({isVisible,onClose}) {
     
   // },[]);
   const getFormData = (e)=>{
+    console.log('wonderwoman', e);
     setFormData({ ...formdata, [e.target.name]: e.target.value });
   }
   const submitIssueform = async (e)=>{
@@ -71,11 +77,11 @@ function CreateIssueModal({isVisible,onClose}) {
 
     <form>
     <div className="form-group">
-          <label htmlFor="exampleFormControlSelect1">Issue Type</label>
+          <label htmlFor="issueType">Issue Type</label>
         <CustomSelectIssueType formdata={formdata} setFormData={setFormData} name='issueType' id='issueType'/>
         </div>
         <div className="form-group">
-          <label htmlFor="exampleFormControlSelect1">Issue Priority</label>
+          <label htmlFor="issuePriority">Issue Priority</label>
           <CustomSelectPriority formdata={formdata} setFormData={setFormData} name='issuePriority' id='issuePriority'/>
         </div>
         <div className="form-group">
@@ -84,16 +90,30 @@ function CreateIssueModal({isVisible,onClose}) {
         </div>
         <div className="form-group">
           <label htmlFor="exampleFormControlTextarea1">Description</label>
-          <textarea className="form-control" name='description' id="exampleFormControlTextarea1" value={formdata.description} onChange={getFormData}  />
+          {/* <Jodit content={content} setContent={setContent}/> */}
+          <JoditEditor
+			ref={editor}
+			value={content}
+			// tabIndex={1} // tabIndex of textarea
+			onBlur={newContent => {
+        setContent(newContent);
+        // console.log('newcontent',newContent);
+        // console.log('content',content);
+        // console.log('formdata: ',formdata);
+        setFormData({...formdata, ['description']:newContent });
+      }} // preferred to use only this option to update the content for performance reasons
+			onChange={newContent => {}}
+		/>
+          {/* <textarea className="form-control" name='description' id="exampleFormControlTextarea1" value={formdata.description} onChange={getFormData}  /> */}
         </div>
         <div className="form-group my-2">
-          <label htmlFor="exampleFormControlSelect1">Reporter</label>
+          <label htmlFor="reporter">Reporter</label>
         <CustomSelectUsers formdata={formdata} setFormData={setFormData} name='reporter' id='reporter'/>
         </div>
         <div className="form-group my-2">
-          <label htmlFor="exampleFormControlInput1">Asignee</label>
+          <label htmlFor="assignee">Asignee</label>
           {/* <input type="Text" className="form-control" id="exampleFormControlInput1" placeholder="" /> */}
-        <CustomSelectUsers formdata={formdata} setFormData={setFormData} name='assignee' id='asignee'/>
+        <CustomSelectUsers formdata={formdata} setFormData={setFormData} name='assignee' id='assignee'/>
         </div>
       <div className="form-group my-5">
       <button className='btn btn-primary' onClick={submitIssueform}>Submit</button>
