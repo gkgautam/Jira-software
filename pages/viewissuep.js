@@ -1,3 +1,5 @@
+// I will add all functionalities of this project in this File.
+
 // import React from 'react'
 // import Image from 'next/image';
 // import dummyattach from '../public/jiraImages/attachment.png';
