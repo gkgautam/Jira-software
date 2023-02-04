@@ -10,7 +10,7 @@ import Subtask from '../../components/Subtask';
 export async function getServerSideProps(context) {
 
     const IssueNo = context.params.IssueNo;
-    const res = await fetch(`http://localhost:3000/api/viewissue/${IssueNo}`)
+    const res = await fetch(`https://jira-software.vercel.app/api/viewissue/${IssueNo}`)
     const data = await res.json();
   
     return {
