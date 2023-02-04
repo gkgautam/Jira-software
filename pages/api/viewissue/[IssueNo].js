@@ -14,7 +14,7 @@ const handler = async (req, res)=>{
           const result = await CreateIssue.find({projectId:IssueNo});
     
           if(result){
-            res.status(201).json(result);
+            res.status(200).json(result);
           }
           else{
             res.status(500).json({message : "Technical Error, try again later"});

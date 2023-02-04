@@ -3,7 +3,7 @@ import Image from 'next/image';
 import dummyattach from '../../public/jiraImages/attachment.png';
 import subtasklogo from '../../public/jiraImages/subtasklogo.svg';
 import medium from '../../public/jiraImages/medium.svg';
-import buglogo from '../../public/jiraImages/buglogo.svg';
+import buglogo from '../../public/jiraImages/Buglogo.svg';
 import RapidBoardBreadcrum from '../../components/activeSprintComponents/RapidBoardBreadcrum';
 import Subtask from '../../components/Subtask';
 
