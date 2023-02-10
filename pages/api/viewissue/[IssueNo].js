@@ -29,11 +29,11 @@ const handler = async (req, res)=>{
         console.log('superman');
     
         const { IssueNo } = req.query;
-        const { description } = req.body;
-        console.log('visa41',req.body);
+        const { description, ticketStatus } = req.body;
+        console.log('visa41',ticketStatus);
         try {
           // const result = await CreateIssue.find({projectId:IssueNo});
-          const result = await CreateIssue.updateOne({projectId:IssueNo},{$set:{description:description}});
+          const result = await CreateIssue.updateOne({projectId:IssueNo},{$set:{description,ticketStatus}});
           if(result){
             console.log('updateed apidata',result);
             res.status(200).json(result);

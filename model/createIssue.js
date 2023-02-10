@@ -26,6 +26,10 @@ const mySchema = new mongoose.Schema({
   assignee:{
     type:String,
     required:true
+  },
+  ticketStatus:{
+    type:String,
+    default:'todo'
   }
 },
 {timestamps:true}

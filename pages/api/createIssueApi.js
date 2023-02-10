@@ -5,17 +5,18 @@ const handler = async (req, res) => {
   if (req.method == 'POST') {
     const {summary,description,reporter,assignee,issueType,issuePriority} = req.body;
     try {
-      if (!summary || !description || !reporter || !assignee) {
+      if (!summary || !description || !reporter || !assignee || !issueType || !issuePriority) {
         res.status(400).json({ message: " All fields are Required!" });
       }
       const LatestIssue = await CreateIssue.findOne().sort({ _id: -1 });
+      const ticketStatus = 'todo';
       let projectId;
       if (LatestIssue) {
         projectId = LatestIssue.projectId + 1;
       } else {
         projectId = 1;
       }
-      const data = new CreateIssue({summary,description,reporter,assignee,issueType,issuePriority,projectId});
+      const data = new CreateIssue({summary,description,reporter,assignee,issueType,issuePriority,projectId,ticketStatus});
       const result = await data.save();
       if(result){
         res.status(201).json(result);

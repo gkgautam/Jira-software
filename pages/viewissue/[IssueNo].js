@@ -5,6 +5,7 @@ import subtasklogo from '../../public/jiraImages/subtasklogo.svg';
 import medium from '../../public/jiraImages/medium.svg';
 import buglogo from '../../public/jiraImages/Buglogo.svg';
 import RapidBoardBreadcrum from '../../components/activeSprintComponents/RapidBoardBreadcrum';
+import TicketStatusDropDown from '../../components/customSelect/TicketStatusDropDown';
 import Subtask from '../../components/Subtask';
 import dynamic from 'next/dynamic';
 
@@ -26,6 +27,8 @@ function IssueNo({data}) {
   const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
   const [description, setContent] = useState(data[0].description);
   const [iseditting,setIsEditting] = useState(false);
+  const [ticketStatus,setTicketStatus] = useState('todo');
+
   const editor = useRef(null);
 
 
@@ -38,7 +41,7 @@ function IssueNo({data}) {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            description:description
+            description,ticketStatus
         })
         });
         // const data = await res.json();
@@ -240,17 +243,17 @@ function IssueNo({data}) {
                         </div>
                         <div className='jira-body-actions m-3'>
                             <div className='issue-status d-flex gap-3 my-1'>
-                                <button className='issue-status-action d-flex align-items-center px-2 m-0' style={{ "border": "none", "borderRadius": "3px", "color": "#E3FCEF", "backgroundColor": "#008000" }}>
+                                {/* <button className='issue-status-action d-flex align-items-center px-2 m-0' style={{ "border": "none", "borderRadius": "3px", "color": "#E3FCEF", "backgroundColor": "#008000" }}> */}
 
-                                    <div className='webapp-title d-flex flex-column ' style={{ "paddingLeft": "0px", }}>
+                                    {/* <div className='webapp-title d-flex flex-column ' style={{ "paddingLeft": "0px", }}>
                                         <h6 className='m-0' style={{ "fontSize": "11px", "fontWeight": "700" }}> Done</h6>
-                                        {/* <p className='m-0 p-0' style={{ "fontSize": "12px", "fontWeight": "400", "color": "rgb(66,82,110)" }}>Board</p> */}
                                     </div>
                                     <div className='dropdown-icon'>
                                         <svg width="20" height="24" viewBox="0 0 24 24" role="presentation"><path d="M8.292 10.293a1.009 1.009 0 000 1.419l2.939 2.965c.218.215.5.322.779.322s.556-.107.769-.322l2.93-2.955a1.01 1.01 0 000-1.419.987.987 0 00-1.406 0l-2.298 2.317-2.307-2.327a.99.99 0 00-1.406 0z" fill="currentColor" fillRule="evenodd"></path></svg>
-                                    </div>
+                                    </div> */}
+                                    <TicketStatusDropDown setTicketStatus={setTicketStatus} />
 
-                                </button>
+                                {/* </button> */}
                                 <div className='webapp-planning d-flex align-items-baseline'>
                                     <div className='dropdown-icon'>
                                         <svg width="20" height="20" viewBox="0 0 24 24" role="presentation"><path d="M6.735 12.322a1 1 0 00-1.47 1.356l3.612 3.919c.537.526 1.337.526 1.834.03l.364-.359a2335.638 2335.638 0 003.939-3.883l.04-.04a492.598 492.598 0 003.658-3.643 1 1 0 00-1.424-1.404 518.42 518.42 0 01-3.64 3.625l-.04.04a2049.114 2049.114 0 01-3.775 3.722l-3.098-3.363z" fill="rgb(0,102,68)"></path></svg>

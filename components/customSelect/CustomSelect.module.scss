@@ -3,6 +3,7 @@
 }
 
 .selector{
+    color: blue;
     cursor: pointer;
     .selectField{
         border: 1px solid #d9d9d9;
@@ -22,7 +23,16 @@
             background-color: rgba(9,30,66,0.04);
         }
     }
+
+    &.ticket_status_selector{
+        .css-1s2u09g-control{
+            // background-color: blueviolet;
+            background: yellow !important;
+        }
+    
+    }
 }
+
 .option_item2{
     list-style-type: none ;
     &:hover{
