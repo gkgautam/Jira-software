@@ -94,14 +94,10 @@ function CreateIssueModal({isVisible,onClose}) {
           <JoditEditor
 			ref={editor}
 			value={content}
-			// tabIndex={1} // tabIndex of textarea
 			onBlur={newContent => {
         setContent(newContent);
-        // console.log('newcontent',newContent);
-        // console.log('content',content);
-        // console.log('formdata: ',formdata);
         setFormData({...formdata, ['description']:newContent });
-      }} // preferred to use only this option to update the content for performance reasons
+      }}
 			onChange={newContent => {}}
 		/>
           {/* <textarea className="form-control" name='description' id="exampleFormControlTextarea1" value={formdata.description} onChange={getFormData}  /> */}

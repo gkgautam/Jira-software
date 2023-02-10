@@ -24,6 +24,29 @@ const handler = async (req, res)=>{
           console.log(error);
         }
       }
+
+      if(req.method === 'PUT'){
+        console.log('superman');
+    
+        const { IssueNo } = req.query;
+        const { description } = req.body;
+        console.log('visa41',req.body);
+        try {
+          // const result = await CreateIssue.find({projectId:IssueNo});
+          const result = await CreateIssue.updateOne({projectId:IssueNo},{$set:{description:description}});
+          if(result){
+            console.log('updateed apidata',result);
+            res.status(200).json(result);
+          }
+          else{
+            res.status(500).json({message : "Technical Error, try again later"});
+          }
+        
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
 }
 
 export default connectDB(handler);

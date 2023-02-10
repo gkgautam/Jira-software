@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, useRef, useState} from 'react'
 import Image from 'next/image';
 import dummyattach from '../../public/jiraImages/attachment.png';
 import subtasklogo from '../../public/jiraImages/subtasklogo.svg';
@@ -6,6 +6,7 @@ import medium from '../../public/jiraImages/medium.svg';
 import buglogo from '../../public/jiraImages/Buglogo.svg';
 import RapidBoardBreadcrum from '../../components/activeSprintComponents/RapidBoardBreadcrum';
 import Subtask from '../../components/Subtask';
+import dynamic from 'next/dynamic';
 
 export async function getServerSideProps(context) {
 
@@ -19,10 +20,34 @@ export async function getServerSideProps(context) {
       }
     }
   }
+
+ 
 function IssueNo({data}) {
-console.log('honeysingh',data);
-// let parser = new DOMParser();
-// let descriptionHtml = parser.parseFromString(data[0].description, 'text/html');
+  const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
+  const [description, setContent] = useState(data[0].description);
+  const [iseditting,setIsEditting] = useState(false);
+  const editor = useRef(null);
+
+
+
+  const updateTicketChanges = async ()=>{
+    try{
+        const res = await fetch(`http://localhost:3000/api/viewissue/${data[0].projectId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            description:description
+        })
+        });
+        // const data = await res.json();
+        // console.log('Updated data',res);
+    }
+    catch (error) {
+        console.log('not fetched!',error);
+    }
+  }
     return (
         <>
             <div className='view-issue d-flex justify-content-center'>
@@ -50,38 +75,32 @@ console.log('honeysingh',data);
                     {/* decription section */}
                     <div className='issue-description my-2'>
                         <h2 className='m-0' style={{ "color": "#172b4d", "fontSize": "14px", "fontWeight": "600", "lineHeight": "24px" }}>Description</h2>
-                        <div className='description-text-container p-2' style={{ "fontSize": "14px", "fontWeight": "400", "fontStyle": "normal", "backgroundColor": "#EBECF0", "borderRadius": "5px" }} >
-                            <div>
-                                {/* <p>
-                                    As an US client ,I want to view relevant health preferences on calorie page for Jenny Fresh plans
-                                    As an US client ,I want to view relevant health preferences on calorie page for Jenny Fresh plans
-                                    As an US client ,I want to view relevant health preferences on calorie page for Jenny Fresh plans
-                                </p>
-                                <h5>
-                                    AC : for story
-                                </h5>
-                                <p>
-                                    1.When the user taps either on Progress icon in the navigation tray or weight tracking tile, a new page opens with available information about users weight.
-                                    2.On the page top right corner of the screen a + symbol will be visible.
-                                </p>
-                                <p>
-                                    A date will be associated with each weigh-in
-                                    An identifier will be added next to the weigh-in in the form of a colored pill that say Coach Input.  This will be the identifier that a coach entered this weight on behalf of the client
-                                    The history will live at the bottom of the progress page
-                                </p>
-                                <p>
-                                    A date will be associated with each weigh-in
-                                    An identifier will be added next to the weigh-in in the form of a colored pill that say Coach Input.  This will be the identifier that a coach entered this weight on behalf of the client
-                                    The history will live at the bottom of the progress page
-                                </p>
-                                <p>
-                                    A date will be associated with each weigh-in
-                                    An identifier will be added next to the weigh-in in the form of a colored pill that say Coach Input.  This will be the identifier that a coach entered this weight on behalf of the client
-                                    The history will live at the bottom of the progress page
-                                </p> */}
-                                {/* {descriptionHtml} */}
-                                <div dangerouslySetInnerHTML={{ __html: data[0].description}} />
-                            </div>
+                        <div className='description-text-container' onClick={()=>{setIsEditting(true)}}style={{ "fontSize": "14px", "fontWeight": "400", "fontStyle": "normal", "backgroundColor": "#EBECF0", "borderRadius": "5px" }} >
+                            {/* <div> */}
+                                <div className={`description-area ${iseditting ? 'd-none':''}`} ><div className='text-main-content p-2' dangerouslySetInnerHTML={{ __html: data[0].description}}/></div>
+                                <div className={`jodit-area ${iseditting ? '':'d-none'}`}>
+                                <JoditEditor
+                                    ref={editor}
+                                    value={description}
+                                    onBlur={newContent => {
+                                    setContent(newContent.toString());
+                                    }}
+                                    onChange={newContent => { }}
+                                />
+                                {/* this code is written for toggling jodit editor */}
+                                <div className= 'edit-button-section d-flex gap-2 my-2'>
+                                <button type="button" onClick={(event)=>{
+                                    event.stopPropagation();
+                                    updateTicketChanges();
+                                    setIsEditting(false);
+                                }} className="btn btn-primary">Save</button>
+                                <button type="button" onClick={(event)=>{
+                                    event.stopPropagation();
+                                    setIsEditting(false);
+                                    }} className="btn btn-light">Cancel</button>
+                                </div>
+                                </div>
+                            {/* </div> */}
                         </div>
                     </div>
                     {/* attachments section */}
