@@ -10,7 +10,7 @@ function Navbarleft() {
   const [showModal, setShowModal]= useState(false);
     return (
         <>
-            <div className='navbarLeft col-3 d-flex flex-column justify-content-between py-3 px-0' style={{ "backgroundColor": "rgb(7 71 166)", "color": "white","justifyContent":"center","gap":"291px","width":"64px" }}>
+            <div className='navbarLeft col-3 d-flex flex-column justify-content-between pb-5 pt-3 px-0' style={{ "backgroundColor": "rgb(7 71 166)", "color": "white","justifyContent":"center","gap":"291px","width":"64px","paddingBottom":"56px" }}>
             <div className='upper-icons d-flex flex-column align-items-center pe-0'>
                 <div className={`jiralogo-icon ${styles.icon}`} >
                     <svg className="w-8 h-8 text-textLogo"

@@ -1,28 +1,24 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import styles from './CustomSelect.module.scss';
-import buglogo from '../../public/jiraImages/Buglogo.svg';
-import storyLogo from '../../public/jiraImages/storylogo.svg';
-import taskLogo from '../../public/jiraImages/Tasklogo.svg';
-import Image from 'next/image';
 
 function TicketStatusDropDown(props) {
 const options = [
   { value: 'indevelopment', index:0, label:'To Do'
   },
-  { value: 'blocked', index:0, label:'BLOCKED'
+  { value: 'blocked', index:1, label:'BLOCKED'
   },
-  { value: 'inprogress', index:0, label:'IN PROGRESS'
+  { value: 'inprogress', index:2, label:'IN PROGRESS'
   },
-  { value: 'por', index:0, label:'POR'
+  { value: 'por', index:3, label:'POR'
   },
-  { value: 'qa', index:0, label:'QA'
+  { value: 'qa', index:4, label:'QA'
   },
-  { value: 'UAT', index:0, label:'UAT'
+  { value: 'UAT', index:5, label:'UAT'
   },
-  { value: 'Done', index:0, label:'DONE'
+  { value: 'Done', index:6, label:'DONE'
   },
-  { value: 'Wontdo', index:0, label:'WONT DO'
+  { value: 'Wontdo', index:7, label:'WONT DO'
   }
 ]
 
@@ -31,7 +27,7 @@ const [dropdownOptions, setDropdownOptions] = useState(options[0].value);
     <>
       <div className={`${styles.selector} ticket_status_selector`}>
         <div className={`${styles.options}`}>
-            <Select  options={options} onChange={(event)=>{
+            <Select value={dropdownOptions} options={options} onChange={(event)=>{
               // alert(dropdownOptions);
               setDropdownOptions(options[event.index])
               props.setTicketStatus(event.value)

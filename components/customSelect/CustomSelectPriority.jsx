@@ -36,18 +36,18 @@ const options = [
     <Image className='' src={lowestLogo} width={20} height={20} alt="Task logo" />
     <p className='m-0 ps-2'>LOWEST</p>
   </div> },
-  { value: 'low',index:1, label:
+  { value: 'low',index:2, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={lowLogo} width={20} height={20} alt="Task logo" />
     <p className='m-0 ps-2'>LOW</p>
   </div> },
-  { value: 'high',index:2, label:
+  { value: 'high',index:3, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={highLogo} width={20} height={20} alt="Task logo" />
     <p className='m-0 ps-2'>HIGH</p>
   </div>
 },
-{ value: 'highest',index:2, label:
+{ value: 'highest',index:4, label:
   <div className='selectField d-flex align-items-center px-1 ps-2'>
     <Image className='' src={highestLogo} width={20} height={20} alt="Task logo" />
     <p className='m-0 ps-2'>HIGHEST</p>
