@@ -7,8 +7,13 @@ import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import profileimg from "../../public/jiraImages/profile.jpg";
 import styles from './Navbar.module.scss'
 import CreateIssueModal from '../modals/CreateIssueModal';
+import { useSession, signOut } from "next-auth/react";
 function Navbar() {
+  const { data: session } = useSession();
   const [showModal, setShowModal]= useState(false);
+  const signOutSession= async ()=>{
+    signOut();
+  }
   return (
     <>
     <Head>
@@ -84,9 +89,15 @@ function Navbar() {
           </ul>
         </li>
         <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{"fontSize":"14px","fontWeight":"500","color":"rgb(52,69,99)"}}>
+          
+          {
+            session ? <button onClick={signOutSession}>
+              Logout
+            </button> : <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{"fontSize":"14px","fontWeight":"500","color":"rgb(52,69,99)"}}>
             Plans
           </a>
+          }
+            
           <ul className="dropdown-menu">
             <li><a className="dropdown-item" href="#">Action</a></li>
             <li><a className="dropdown-item" href="#">Another action</a></li>
