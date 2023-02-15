@@ -7,7 +7,6 @@ const handler = async (req, res)=>{
     if(req.method == 'GET'){
     
         const { IssueNo } = req.query;
-        console.log('bachhan',req.query)
     
         try {
     
