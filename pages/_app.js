@@ -2,6 +2,7 @@ import Head from "next/head";
 import Script from "next/script";
 import Layout from "../components/Layout";
 import { SessionProvider } from "next-auth/react";
+import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
     return (
         <>
