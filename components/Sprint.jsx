@@ -22,7 +22,7 @@ function Sprint({alltickets}) {
             <div className='border'>
             {
                 alltickets.map((item,index)=>{
-return(<SprintTicket ticketdata={item} color={colors[index]} />)
+return(<SprintTicket ticketdata={item} key={index} color={colors[index]} />)
                 })
             }
                 {/* <SprintTicket /> */}
