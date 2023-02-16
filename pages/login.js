@@ -124,6 +124,7 @@ import {RiErrorWarningFill} from "react-icons/ri";
 import Link from "next/link";
 import { useFormik } from "formik";
 import loginValidate from "../lib/validate";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 
 const Login = () => {
@@ -135,6 +136,10 @@ const Login = () => {
     validate:loginValidate,
     onSubmit
   });
+
+  async function handleGoogleSignin(){
+    signIn("google", { callbackUrl: "http://localhost:3000" });
+  }
 
   async function onSubmit(values){
     console.log(values);
@@ -192,6 +197,7 @@ const Login = () => {
               <div className="text-center my-3 md:w-80 w-full">
                 <button
                   type="button"
+                  onClick={handleGoogleSignin}
                   className="w-full flex flex-row justify-around text-center place-items-center p-2 bg-white font-medium drop-shadow-md rounded hover:bg-[#FAFBFC] text-[#42526E]"
                 >
                   <FcGoogle size={20} className="" />

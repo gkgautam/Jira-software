@@ -10,7 +10,7 @@ export async function getServerSideProps() {
   }
 }
 
-function Activesprint({data}) {
+function Activesprint({ data }) {
   console.log('batman333',data);
   return (
     <>
