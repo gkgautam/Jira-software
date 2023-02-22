@@ -1,0 +1,63 @@
+.overlay.hidden {
+    display: none;
+}
+.overlay .spinner_3 {
+    width: 90px;
+    height: 90px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+          farthest-side,
+          #0081C6 100%,
+          rgba(112, 112, 112, 0)
+        )
+        top/8px 8px no-repeat,
+      conic-gradient(#0000 0%, #0081C6);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+    animation: s3 1.5s infinite linear;
+  }
+
+  .overlay {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 10002 ;
+        opacity: 1;
+        transition: all 0.5s;
+        & .loader_msg{
+            position: absolute;
+            text-align: center;
+            margin-top: 200px;
+            & .msg_head{
+                margin-bottom: 8px;
+                font-family: Open Sans;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 21.6px;
+                letter-spacing: 5%;
+            }
+            & .msg_body{
+                font-size: 1px;
+                font-weight: 500;
+                line-height: 24px;
+            }
+        }
+        & p{
+            margin-bottom: 0;
+        }
+    }
+  .innerlogo{
+    position: absolute;
+  }
+  
+  @keyframes s3 {
+    100% {
+      transform: rotate(1turn);
+    }
+  }

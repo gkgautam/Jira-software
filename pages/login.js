@@ -126,12 +126,16 @@ import { useFormik } from "formik";
 import loginValidate from "../lib/validate";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { setCookie } from 'nookies';
 
 const Login = () => {
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues:{
-      email:""
+      email:"",
+      password:""
     },
     validate:loginValidate,
     onSubmit
@@ -143,6 +147,46 @@ const Login = () => {
 
   async function onSubmit(values){
     console.log(values);
+    try {
+      const res = await fetch("/api/userLogin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      });
+
+      const data = await res.json();
+
+      if (data.message == "Required Fields...") {
+        alert("Required field");
+      }
+
+      else if (data.message == "Please enter valid email address") {
+        alert("Please enter valid email address");
+      }
+
+      else if (data.message == "user registered nhi hai....") {
+        alert("user registered nhi hai....");
+      }
+
+      else if (data.message == "Email id or password not matched !") {
+        alert("Email id or password not matched !");
+      }
+
+      else if (data.message == "login success !") {
+        alert("login success !");
+        setCookie(null, 'token', data.token, { secure: true });
+        router.push("/");
+      }
+
+      else {
+        alert("Technical Error, try again later");
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -183,12 +227,32 @@ const Login = () => {
                 }
                 
               </div>
+              <div className="text-center mt-6 my-2 md:w-80 w-full">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter password"
+                  className={`w-full text-[#091E42] border-2 border-[#dfe1f6] ${formik.errors.password ? "border-[#BB4B3D] focus:border-[#BB4B3D]" : ""} p-2 rounded outline-none focus:border-[#528cd6] transition-colors ease-in-out bg-[#fafbfc] hover:bg-[#ebebeb] focus:bg-white`}
+                  // onChange={formik.handleChange}
+                  // value={formik.values.email}
+                  {...formik.getFieldProps("password")}
+                />
+
+                {
+                  formik.errors.password && formik.touched.password ? (<p className="absolute flex text-[#BB4B3D] text-sm gap-x-1  align-middle place-items-center">
+                  <RiErrorWarningFill />
+                  {formik.errors.password}
+                </p>) : null
+
+                }
+                
+              </div>
               <div className="text-center mt-6 md:w-80 w-full">
                 <button
                   type="submit"
                   className="w-full p-2 bg-[#0052CC] font-medium text-white rounded hover:bg-[#196be6] active:bg-[#154da1]"
                 >
-                  Continue
+                  Submit
                 </button>
               </div>
               <div className="text-center my-3 select-none  md:w-80 w-full">
@@ -222,7 +286,7 @@ const Login = () => {
                   Continue with Apple
                 </button>
               </div>
-              <div className="text-center my-3 md:w-80 w-full">
+              {/* <div className="text-center my-3 md:w-80 w-full">
                 <button
                   type="button"
                   className="w-full flex flex-row justify-around text-center place-items-center p-2 bg-white font-medium drop-shadow-md rounded hover:bg-[#FAFBFC] text-[#42526E]"
@@ -233,14 +297,14 @@ const Login = () => {
                   />
                   Continue with Slack
                 </button>
-              </div>
+              </div> */}
               <hr className="border-1 border-[#D5D8DE] md:w-80 w-full mt-6 mb-1" />
               <div className="flex justify-center gap-x-3 text-center my-3 md:w-80 w-full">
                 <Link href={"#"} className="text-[#0052CC] hover:underline">
                   Can&apos;t log in?
                 </Link>
                 <p className="text-gray-500">&#8226;</p>
-                <Link href={"#"} className="text-[#0052CC] hover:underline">
+                <Link href={"/signup"} className="text-[#0052CC] hover:underline">
                   Sign up for an account
                 </Link>
               </div>

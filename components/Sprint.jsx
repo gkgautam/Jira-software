@@ -25,15 +25,6 @@ function Sprint({alltickets}) {
 return(<SprintTicket ticketdata={item} key={index} color={colors[index]} />)
                 })
             }
-                {/* <SprintTicket /> */}
-                {/* <SprintTicket />
-                <SprintTicket />
-                <SprintTicket />
-                <SprintTicket />
-                <SprintTicket />
-                <SprintTicket />
-                <SprintTicket />
-                <SprintTicket /> */}
 
 
             </div>

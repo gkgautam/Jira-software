@@ -2,11 +2,17 @@ import React from 'react';
 import Image from 'next/image';
 import profileimg from '../../../public/jiraImages/react-logo.png';
 import styles from './Sidebar.module.scss'
+import $ from 'jquery';
 import { FaGgCircle } from "react-icons/fa";
 import Link from 'next/link';
+import { useState } from 'react';
+import Spinner from '../../spinner/Spinner';
 function Sidebar() {
+  const [spinner,setSpinner] = useState(false);
   return (
     // this division is for project name box
+    <>
+      <Spinner show={spinner}/>
     <div className='sidebar-secondary col-9 p-0 px-3 m-0' style={{ "backgroundColor": "rgb(244 245 247)" }}>
       <div className='project-name-container d-flex justify-content-around align-items-center my-3 px-2'>
         <Link href={'/'}>
@@ -124,6 +130,7 @@ function Sidebar() {
         </div>
         
     </div>
+    </>
   )
 }
 

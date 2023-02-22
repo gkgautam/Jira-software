@@ -2,10 +2,14 @@ import Head from "next/head";
 import Script from "next/script";
 import Layout from "../components/Layout";
 import { SessionProvider } from "next-auth/react";
+import NextNProgress from 'nextjs-progressbar';
+import NProgress from 'nprogress';
 // import '../styles/globals.css'
 function App({ Component, pageProps }) {
+    NProgress.configure({showSpinner:false, trickle:false, minimum:0.01})
     return (
         <>
+        <NextNProgress color="#00b1af" height={2}/>
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link

@@ -6,6 +6,8 @@
 // import 'font-awesome/css/font-awesome.min.css'
 // import 'bootstrap/dist/css/bootstrap';
 
+import Spinner from "../components/spinner/Spinner"
+
 // import RapidBoardBreadcrum from "../components/activeSprintComponents/RapidBoardBreadcrum";
 
 export default function Home() {
@@ -28,6 +30,7 @@ export default function Home() {
       {/* <div className='breadcrum p-0 m-0'>
         <RapidBoardBreadcrum/>
         </div> */}
+        {/* <Spinner show={true}/> */}
       <h1>Welcome to Jira</h1>
     </>
   )
