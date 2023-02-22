@@ -10,7 +10,7 @@ import Spinner from '../components/spinner/Spinner';
 //   }
 // }
 // function backlog({ data }) {
-function backlog() {
+function Backlog() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -38,16 +38,6 @@ function backlog() {
        
     </>
   )
-  // return (
-  //   {
-  //     loading ? <Spinner show={loading} /> : <>
-  //     <Sprint  alltickets={data}/>
-  //     <Sprint  alltickets={data}/>
-  //     <Sprint  alltickets={data}/>
-  //     <Sprint  alltickets={data}/>
-  //     </>
-  //   }
-  // )
 }
 
-export default backlog
+export default Backlog
