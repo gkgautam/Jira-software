@@ -8,6 +8,7 @@ import profileimg from "../../public/jiraImages/profile.jpg";
 import styles from './Navbar.module.scss'
 import CreateIssueModal from '../modals/CreateIssueModal';
 import { useSession, signOut } from "next-auth/react";
+import Link from 'next/link';
 function Navbar() {
   const { data: session } = useSession();
   const [showModal, setShowModal]= useState(false);
@@ -82,10 +83,10 @@ function Navbar() {
             People
           </a>
           <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
+            <li><Link className="dropdown-item" href="/createteam">Create Team</Link></li>
+            {/* <li><a className="dropdown-item" href="#">Another action</a></li>
             <li><hr className="dropdown-divider"></hr></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
+            <li><a className="dropdown-item" href="#">Something else here</a></li> */}
           </ul>
         </li>
         <li className="nav-item dropdown">
