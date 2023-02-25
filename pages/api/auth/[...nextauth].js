@@ -14,9 +14,11 @@ export default NextAuth({
         CredentialsProvider({
           name:"Credentials",
           async authorize(credentials,req){
-            try {
+            // connectDB().catch(err=>{err:"connection failed!"});
+            // try {
               connectDB();
               const isUserExist = await User.findOne({email:credentials.email});
+              console.log('usercheck',isUserExist);
               if(!isUserExist){
                 throw new Error('User does not exist!');
               }
@@ -25,11 +27,12 @@ export default NextAuth({
                 if(!checkPassword || isUserExist.email!==credentials.email){
                   throw new Error('Invalid credentials!');
                 }
+                return isUserExist;
               }
-              return isUserExist;
-            } catch (error) {
-              throw new Error(error);
-            }
+            // } catch (error) {
+            //   console.log('usererr',error);
+            //   throw new Error(error);
+            // }
           }
         })
       ]
