@@ -10,12 +10,24 @@ const mySchema = new mongoose.Schema({
     required:true
   },
   teamMembers:[{
-    email:String,
-    name:String
+    memberEmail:String,
+    memberName:String
   }],
 });
 
 mongoose.models = {};
+
+mySchema.methods.addmember = async function(memberdata){
+  try{
+    this.teamMembers = this.teamMembers.concat(memberdata);
+    await this.save();
+    return this.teamMembers;
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+
 
 const ProjectTeam = mongoose.model("projectteam", mySchema);
 
