@@ -14,8 +14,8 @@ export default NextAuth({
         CredentialsProvider({
           name:"Credentials",
           async authorize(credentials,req){
+            await connectDB.call();
             try {
-              connectDB.call();
               const isUserExist = await User.findOne({email:credentials.email});
               if(!isUserExist){
                 throw new Error('User does not exist!');
@@ -29,7 +29,6 @@ export default NextAuth({
               }
             } catch (error) {
               throw new Error(error);
-
             }
           }
         })
