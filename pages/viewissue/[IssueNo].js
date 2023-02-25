@@ -8,11 +8,41 @@ import RapidBoardBreadcrum from '../../components/activeSprintComponents/RapidBo
 import TicketStatusDropDown from '../../components/customSelect/TicketStatusDropDown';
 import Subtask from '../../components/Subtask';
 import dynamic from 'next/dynamic';
+import { getSession } from "next-auth/react";
+
+// export async function getServerSideProps(context) {
+//   const userSession = await getSession(context);
+
+//   if(!userSession){
+//     return {
+//       redirect:{
+//         destination:"/login",
+//         permanent: false
+//       }
+//     }
+//   }
+     
+//     return{
+//       props:{ userSession }
+//     }
+//   }
 
 export async function getServerSideProps(context) {
+    const userSession = await getSession(context);
+
+    if(!userSession){
+      return {
+        redirect:{
+          destination:"/login",
+          permanent: false
+        }
+      }
+    }
 
     const IssueNo = context.params.IssueNo;
-    const res = await fetch(`https://jira-software.vercel.app/api/viewissue/${IssueNo}`)
+    // const res = await fetch(`https://jira-software.vercel.app/api/viewissue/${IssueNo}`)
+    const res = await fetch(`${process.env.NODE_ENV=="production"?`https://jira-software.vercel.app/api/viewissue/${IssueNo}`:`http://localhost:3000/api/viewissue/${IssueNo}`}`);
+
     // const res = await fetch(`http://localhost:3000/api/viewissue/${IssueNo}`)
 
     const data = await res.json();

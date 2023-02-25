@@ -12,6 +12,24 @@ import Spinner from '../components/spinner/Spinner';
 //     props: {data}, // will be passed to the page component as props
 //   }
 // }
+import { getSession } from "next-auth/react";
+
+export async function getServerSideProps(context) {
+  const userSession = await getSession(context);
+
+  if(!userSession){
+    return {
+      redirect:{
+        destination:"/login",
+        permanent: false
+      }
+    }
+  }
+     
+    return{
+      props:{ userSession }
+    }
+  }
 
 function Activesprint() {
   const [sprintData, setSprintData] = useState([]);
@@ -20,7 +38,8 @@ function Activesprint() {
   const fetchData = async () => {
     setLoading(true);
     // const res = await fetch("http://localhost:3000/api/fetchIssuesApi");
-    const res = await fetch('https://jira-software.vercel.app/api/fetchIssuesApi');
+    // const res = await fetch('https://jira-software.vercel.app/api/fetchIssuesApi');
+    const res = await fetch(`${process.env.NODE_ENV=="production"?"https://jira-software.vercel.app/api/fetchIssuesApi":"http://localhost:3000/api/fetchIssuesApi"}`);
     const data = await res.json();
     setSprintData(data);
     setLoading(false);

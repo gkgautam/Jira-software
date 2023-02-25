@@ -7,7 +7,24 @@ import loginValidate from "../lib/validate";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { setCookie } from 'nookies';
+import { getSession } from "next-auth/react";
+
+export async function getServerSideProps(context) {
+  const userSession = await getSession(context);
+
+  if(userSession){
+    return {
+      redirect:{
+        destination:"/",
+        permanent: false
+      }
+    }
+  }
+     
+    return{
+      props:{ userSession }
+    }
+  }
 
 const Login = () => {
   const router = useRouter();

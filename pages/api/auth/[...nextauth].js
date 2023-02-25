@@ -15,7 +15,7 @@ export default NextAuth({
           name:"Credentials",
           async authorize(credentials,req){
             try {
-              connectDB().call();
+              await connectDB.call();
               const isUserExist = await User.findOne({email:credentials.email});
               if(!isUserExist){
                 throw new Error('User does not exist!');

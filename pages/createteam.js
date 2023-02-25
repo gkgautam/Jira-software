@@ -1,6 +1,24 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import { getSession } from "next-auth/react";
+
+export async function getServerSideProps(context) {
+  const userSession = await getSession(context);
+
+  if(!userSession){
+    return {
+      redirect:{
+        destination:"/login",
+        permanent: false
+      }
+    }
+  }
+     
+    return{
+      props:{ userSession }
+    }
+  }
 
 function Createteam() {
 
