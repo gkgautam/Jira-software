@@ -29,6 +29,7 @@ export default NextAuth({
               }
             } catch (error) {
               throw new Error(error);
+              
             }
           }
         })
