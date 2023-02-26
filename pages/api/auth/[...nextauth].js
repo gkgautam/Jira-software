@@ -1,37 +1,44 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
-import connectDB from "../../../middleware/database";
+import mongoose from 'mongoose';
 import User from "../../../model/user";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { verify } from "argon2";
+
+const connectAuthDB = async (req, res)=>{
+  if(mongoose.connections[0].readyState){
+    return;
+  }
+  mongoose.connect(process.env.MONGO_DB_URI, { useUnifiedTopology: true, useNewUrlParser: true } );
+
+};
+
 export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     CredentialsProvider({
       name: "Credentials",
       async authorize(credentials, req) {
-        // connectDB().catch(err=>{err:"connection failed!"});
-        // try {
-        connectDB();
+
+        connectAuthDB();
+        
         const isUserExist = await User.findOne({ email: credentials.email });
-        // console.log('usercheck', isUserExist);
         if (!isUserExist) {
-          throw new Error('User does not exist!');
+          throw new Error("User does not exist!");
         }
-        const checkPassword = await verify(isUserExist.password, credentials.password);
+        const checkPassword = await verify(
+          isUserExist.password,
+          credentials.password
+        );
         if (!checkPassword || isUserExist.email !== credentials.email) {
-          throw new Error('Invalid credentials!');
+          throw new Error("Invalid credentials!");
         }
         return isUserExist;
-        // } catch (error) {
-        //   console.log('usererr',error);
-        //   throw new Error(error);
-        // }
-      }
-    })
-  ]
+      },
+    }),
+  ],
 });
