@@ -53,10 +53,7 @@ function Createteam() {
     }
   }
 
-  // const updateMemberList = (e) =>{
-  //     formik.values.membersEmail = memberList;
-  //     console.log('memberlist',memberList);
-  // }
+
   return (
     <>
       <form onSubmit={formik.handleSubmit}>

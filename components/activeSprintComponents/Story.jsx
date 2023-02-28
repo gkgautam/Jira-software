@@ -5,7 +5,6 @@ import StorySubtask from './StorySubtask';
 import Link from 'next/link';
 
 function Story(props) {
-    // console.log('angelina',props.storydata);
     return (
         <>
             <div className='individual-story d-flex my-1'>
