@@ -57,14 +57,7 @@ const handler = async (req, res) => {
         res.status(500).json({ message: error });
       }
     }
-  } else if (req.method == "GET") {
-    const allteams = await ProjectTeam.find({});
-    if (allteams) {
-      res.status(200).json(allteams);
-    } else {
-      res.status(422).json({ message: "Technical Error" });
-    }
-  }
+  } 
 };
 
 export default connectDB(handler);
