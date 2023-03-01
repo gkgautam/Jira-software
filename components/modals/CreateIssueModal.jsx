@@ -130,7 +130,7 @@ function CreateIssueModal({ isVisible, onClose }) {
             <select name="" className="form-select" onChange={(e)=>{setSelectedProjectTeam(e.target.value);console.log(selectedProjectTeam);}}>
             {
               projectTeam.map((item,index)=>{
-                return (<option value={index}>{item.teamName}</option>)
+                return (<option key={index} value={index}>{item.teamName}</option>)
               })
             }
             </select>

@@ -84,9 +84,9 @@ function Navbar(props)
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="/viewissue/7">
+                    {/* <Link className="dropdown-item" href="/">
                       {props.work}
-                    </a>
+                    </Link> */}
                   </li>
                 </ul>
               </li>
