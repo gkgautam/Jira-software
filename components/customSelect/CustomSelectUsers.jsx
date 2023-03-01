@@ -14,7 +14,8 @@ function CustomSelectUsers(props) {
 
   async function showTeamMembers() {
     try {
-      const res = await fetch(`http://localhost:3000/api/createteam`);
+    const res = await fetch(`${process.env.NODE_ENV=="production"?"https://jira-software.vercel.app/api/createteam":"http://localhost:3000/api/createteam"}`);
+      // const res = await fetch(`http://localhost:3000/api/createteam`);
       const data = await res.json();
       setEmp(data[props.selectedProjectTeam].teamMembers);
     } catch (error) {

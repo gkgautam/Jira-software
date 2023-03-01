@@ -29,7 +29,8 @@ function CreateIssueModal({ isVisible, onClose }) {
     setFormData({ ...formdata, [e.target.name]: e.target.value });
   };
   const fetchProject = async ()=> {
-    const res = await fetch(`http://localhost:3000/api/createteam`);
+    // const res = await fetch(`http://localhost:3000/api/createteam`);
+    const res = await fetch(`${process.env.NODE_ENV=="production"?"https://jira-software.vercel.app/api/createteam":"http://localhost:3000/api/createteam"}`);
     const data = await res.json();
     setProjectTeam(data);
   }
