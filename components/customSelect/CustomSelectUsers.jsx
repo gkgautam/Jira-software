@@ -8,22 +8,30 @@ import user1 from "../../public/jiraImages/profile.jpg";
 import storyLogo from "../../public/jiraImages/storylogo.svg";
 import taskLogo from "../../public/jiraImages/Tasklogo.svg";
 import Image from "next/image";
+import { data } from "jquery";
 
 function CustomSelectUsers(props) {
   const [emp, setEmp] = useState([]);
 
+  const [teamName, setTeamName] = useState(undefined);
+
   async function showTeamMembers() {
     try {
-      const res = await fetch(`http://localhost:3000/api/createteam`);
+      const res = await fetch(`http://localhost:3000/api/fetchteam/${teamName}`);
       const data = await res.json();
-      setEmp(data[props.selectedProjectTeam].teamMembers);
+
+      setEmp(data.teamMembers);
     } catch (error) {
       console.log(error);
     }
   }
   useEffect(() => {
-    showTeamMembers();
-  }, [props.selectedProjectTeam]);
+    setTeamName(props.teamName)
+    if(teamName !== undefined){
+      showTeamMembers();
+    }
+
+  }, [props, teamName]);
 
   let options = [];
 
@@ -56,33 +64,24 @@ function CustomSelectUsers(props) {
           index: 0,
           label: (
             <div className="selectField d-flex align-items-center px-1 ps-2">
-               <Image
-              src={user1}
-              style={{ borderRadius: "50%" }}
-              width={20}
-              height={20}
-              alt="Bug logo"
-            />
               <p className="m-0 ps-2">Select here</p>
             </div>
           ),
-      }
+        }
   );
+
 
   return (
     <>
-      <div className={`${styles.selector}`}>
-        <div className={`${styles.options}`}>
+      <div className={styles.selector}>
+        <div className={styles.options}>
           <Select
             value={dropdownOptions}
             name={props.name}
             options={options}
             onChange={(event) => {
               setDropdownOptions(options[event.index]);
-              props.setFormData({
-                ...props.formdata,
-                [props.name]: event.value,
-              });
+              props.setFormData({...props.formdata,[props.name]: event.value });
             }}
           />
         </div>
