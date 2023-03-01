@@ -4,15 +4,26 @@ import CustomSelectIssueType from "../customSelect/CustomSelectIssueType";
 import CustomSelectPriority from "../customSelect/CustomSelectPriority";
 import CustomSelectUsers from "../customSelect/CustomSelectUsers";
 import dynamic from "next/dynamic";
-// below line is to convert html to react component
-// https://magic.reactjs.net/htmltojsx.htm
-function CreateIssueModal({ isVisible, onClose }) {
+
+function CreateIssueModal({ isVisible, onClose, data }) {
+
   const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
   const [content, setContent] = useState("");
-  const [projectTeam, setProjectTeam] = useState([]);
-  const [selectedProjectTeam, setSelectedProjectTeam] = useState(0);
   const editor = useRef(null);
-  // const [content, setContent] = useState('');
+
+  const [teams, setTeams] = useState([])
+
+  const fetchTeamsData = async () =>{
+    const res = await fetch("/api/fetchteam");
+    const data = await res.json();
+    setTeams(data);
+  }
+
+  useEffect(() => {
+    fetchTeamsData();
+  }, [])
+
+  
   const [formdata, setFormData] = useState({
     issueType: "",
     issuePriority: "",
@@ -22,20 +33,16 @@ function CreateIssueModal({ isVisible, onClose }) {
     assignee: "",
   });
 
-  // useEffect(()=>{
-
-  // },[]);
   const getFormData = (e) => {
     setFormData({ ...formdata, [e.target.name]: e.target.value });
   };
-  const fetchProject = async ()=> {
-    const res = await fetch(`http://localhost:3000/api/createteam`);
-    const data = await res.json();
-    setProjectTeam(data);
+
+  const [teamName, setTeamName] = useState("");
+  const getTeamName = (e) =>{
+    setTeamName(e.target.value);
   }
-  useEffect(()=>{
-    fetchProject();
-  },[]);
+
+
   const submitIssueform = async (e) => {
     e.preventDefault();
     const {
@@ -73,6 +80,8 @@ function CreateIssueModal({ isVisible, onClose }) {
         }),
       });
       const data = await res.json();
+      console.log("saved data", data);
+      console.log("response", res);
       if (res.status === 201) {
         alert("Issue created successfully!");
         onClose();
@@ -86,6 +95,7 @@ function CreateIssueModal({ isVisible, onClose }) {
         });
       }
     } catch (error) {
+      console.log("server error here2.");
     }
   };
   if (!isVisible) return null;
@@ -127,12 +137,13 @@ function CreateIssueModal({ isVisible, onClose }) {
         <form>
           <div className="form-group">
             <label htmlFor="issueType">Project</label>
-            <select name="" className="form-select" onChange={(e)=>{setSelectedProjectTeam(e.target.value);console.log(selectedProjectTeam);}}>
-            {
-              projectTeam.map((item,index)=>{
-                return (<option value={index}>{item.teamName}</option>)
-              })
-            }
+            <select name="" className="form-select" value={teamName} onChange={getTeamName}>
+              <option>Select</option>
+              {
+                teams.map((val, key)=>{
+                  return (<option value={val.teamName} key={key}>{val.teamName}</option>)
+                })
+              }
             </select>
           </div>
 
@@ -187,7 +198,7 @@ function CreateIssueModal({ isVisible, onClose }) {
               setFormData={setFormData}
               name="reporter"
               id="reporter"
-              selectedProjectTeam={selectedProjectTeam}
+              teamName={teamName}
             />
           </div>
           <div className="form-group my-2">
@@ -198,7 +209,7 @@ function CreateIssueModal({ isVisible, onClose }) {
               setFormData={setFormData}
               name="assignee"
               id="assignee"
-              selectedProjectTeam={selectedProjectTeam}
+              teamName={teamName}
             />
           </div>
           <div className="form-group my-5">
