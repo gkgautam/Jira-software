@@ -11,7 +11,10 @@ const mySchema = new mongoose.Schema({
   },
   teamMembers:[{
     memberEmail:String,
-    memberName:String
+    memberName:String,
+    memberwork:[{
+      IssueID:Number
+    }]
   }],
 });
 

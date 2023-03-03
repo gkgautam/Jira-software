@@ -20,6 +20,7 @@ function CreateIssueModal({ isVisible, onClose }) {
     description: "",
     reporter: "",
     assignee: "",
+    selectedProjectTeam:0
   });
 
   // useEffect(()=>{
@@ -38,6 +39,7 @@ function CreateIssueModal({ isVisible, onClose }) {
     fetchProject();
   },[]);
   const submitIssueform = async (e) => {
+    console.log('saradata',formdata);
     e.preventDefault();
     const {
       summary,
@@ -46,6 +48,7 @@ function CreateIssueModal({ isVisible, onClose }) {
       assignee,
       issueType,
       issuePriority,
+      selectedProjectTeam
     } = formdata;
     if (
       summary == "" ||
@@ -53,7 +56,8 @@ function CreateIssueModal({ isVisible, onClose }) {
       reporter == "" ||
       assignee == "" ||
       issueType == "" ||
-      issuePriority == ""
+      issuePriority == "" ||
+      selectedProjectTeam ==""
     ) {
       alert("All Fields are required!");
       return false;
@@ -71,6 +75,7 @@ function CreateIssueModal({ isVisible, onClose }) {
           assignee,
           issueType,
           issuePriority,
+          selectedProjectTeam
         }),
       });
       const data = await res.json();
@@ -84,6 +89,7 @@ function CreateIssueModal({ isVisible, onClose }) {
           description: "",
           reporter: "",
           assignee: "",
+          selectedProjectTeam:0
         });
       }
     } catch (error) {
@@ -128,7 +134,7 @@ function CreateIssueModal({ isVisible, onClose }) {
         <form>
           <div className="form-group">
             <label htmlFor="issueType">Project</label>
-            <select name="" className="form-select" onChange={(e)=>{setSelectedProjectTeam(e.target.value);console.log(selectedProjectTeam);}}>
+            <select name="" className="form-select" onChange={(e)=>{setSelectedProjectTeam(e.target.value);console.log(selectedProjectTeam);setFormData({ ...formdata, ["selectedProjectTeam"]: projectTeam[e.target.value].teamId })}}>
             {
               projectTeam.map((item,index)=>{
                 return (<option key={index} value={index}>{item.teamName}</option>)
