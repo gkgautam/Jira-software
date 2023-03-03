@@ -9,19 +9,6 @@ const handler = async (req, res) => {
       if (!summary || !description || !reporter || !assignee || !issueType || !issuePriority || !selectedProjectTeam) {
         res.status(400).json({ message: " All fields are Required!" });
       }
-      const foundedProjecTeam = await ProjectTeam.findOne({teamId:selectedProjectTeam});
-      // const foundedProjecTeam2 = await ProjectTeam.find({$and:[{"teamMembers.memberName":assignee}],teamId:selectedProjectTeam});
-      // console.log('Foundedteam:',foundedProjecTeam.teamMembers);
-      let  foundedMember3;
-      const foundedMember = foundedProjecTeam.teamMembers.map((item)=>{
-        if(item.memberName === assignee){
-          foundedMember3 = item;
-        }
-        // return (item.memberName);
-      });
-      // console.log(foundedMember3);
-      // const foundedMember = foundedProjecTeam.findOne({memberEmail:'john@gmail.com'});
-      // const updatedProjectTeam = await ProjectTeam.updateOne({teamId:selectedProjectTeam},{$set:{description,ticketStatus}});
       const LatestIssue = await CreateIssue.findOne().sort({ _id: -1 });
       const ticketStatus = 'todo';
       let projectId;
@@ -33,7 +20,26 @@ const handler = async (req, res) => {
       const data = new CreateIssue({summary,description,reporter,assignee,issueType,issuePriority,projectId,ticketStatus});
       const result = await data.save();
       if(result){
-        res.status(201).json(result);
+
+        const findTeam = await ProjectTeam.findOne({"teamMembers.memberName":assignee});
+        const teamMembers = findTeam.teamMembers;
+        let member = {};
+        let index = 0;
+  
+        for (let i = 0; i < teamMembers.length; i++) {
+          if(teamMembers[i].memberName == assignee)
+          {
+            member = teamMembers[i];
+            index = i;
+          }
+        }
+        const work = await findTeam.addmemberWork({ IssueID:projectId,summary,ticketStatus}, index);
+        if(work){
+          res.status(201).json(result);
+        }
+        else{
+          res.status(500).json({ message: "Technical Error, try again later" });
+        }
       }
       else{
         res.status(500).json({ message: "Technical Error, try again later" });

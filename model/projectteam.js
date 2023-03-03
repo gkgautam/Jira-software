@@ -13,7 +13,9 @@ const mySchema = new mongoose.Schema({
     memberEmail:String,
     memberName:String,
     memberwork:[{
-      IssueID:Number
+      IssueID:Number,
+      summary:String,
+      ticketStatus:String,
     }]
   }],
 });
@@ -23,6 +25,17 @@ mongoose.models = {};
 mySchema.methods.addmember = async function(memberdata){
   try{
     this.teamMembers = this.teamMembers.concat(memberdata);
+    await this.save();
+    return this.teamMembers;
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+
+mySchema.methods.addmemberWork = async function(work, index){
+  try{
+    this.teamMembers[index].memberwork = this.teamMembers[index].memberwork.concat(work);
     await this.save();
     return this.teamMembers;
   }
