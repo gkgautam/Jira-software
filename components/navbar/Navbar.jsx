@@ -110,7 +110,7 @@ function Navbar(props)
                   {
                     flag.length > 0 ? flag.map((filteredTicket, index) => {
                       return (
-                        <li className="" style={{cursor:'pointer',width:'max-content'}}>
+                        <li key={index} className="" style={{cursor:'pointer',width:'max-content'}}>
                     <Link className="dropdown-item" href={`/viewissue/${filteredTicket.projectId}`}>
                     <div className='subtask-details d-flex justify-content-between p-2' style={{"boxShadow":"0 1px 1px rgba(9,30,66,0.25),0 0 1px 1px rgba(9,30,66,0.13)","borderRadius":"3px"}}>
                             <div className='left-details'>

@@ -186,18 +186,18 @@ const Login = () => {
                   type="button"
                   className="w-full flex flex-row justify-around text-center place-items-center p-2 bg-white font-medium drop-shadow-md rounded hover:bg-[#FAFBFC] text-[#42526E]"
                 >
-                  <Image width={18} height={18} src="/microsoft-logo.svg" className="" />
+                  <Image width={18} height={18} src="/microsoft-logo.svg" className="" alt="Microsoft-Image" />
                   Continue with Microsoft
                 </button>
               </div>
               <div className="text-center my-3 md:w-80 w-full">
-                <button
+                {/* <button
                   type="button"
                   className="w-full flex flex-row justify-around text-center place-items-center p-2 bg-white font-medium drop-shadow-md rounded hover:bg-[#FAFBFC] text-[#42526E]"
                 >
                   <Image width={18} height={18} src="/apple-logo.svg" className="" />
                   Continue with Apple
-                </button>
+                </button> */}
               </div>
               {/* <div className="text-center my-3 md:w-80 w-full">
                 <button
