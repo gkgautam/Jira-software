@@ -1,4 +1,4 @@
-import {React, useRef, useState} from 'react'
+import {React, useEffect, useRef, useState} from 'react'
 import Image from 'next/image';
 import dummyattach from '../../public/jiraImages/attachment.png';
 import subtasklogo from '../../public/jiraImages/subtasklogo.svg';
@@ -9,6 +9,7 @@ import TicketStatusDropDown from '../../components/customSelect/TicketStatusDrop
 import Subtask from '../../components/Subtask';
 import dynamic from 'next/dynamic';
 import { getSession } from "next-auth/react";
+import { useRouter } from 'next/router';
 
 // export async function getServerSideProps(context) {
 //   const userSession = await getSession(context);
@@ -59,15 +60,15 @@ function IssueNo({data}) {
   const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
   const [description, setContent] = useState(data[0].description);
   const [iseditting,setIsEditting] = useState(false);
-  const [ticketStatus,setTicketStatus] = useState('todo');
+  const [ticketStatus,setTicketStatus] = useState(data[0].ticketStatus);
+  const router = useRouter();
 
   const editor = useRef(null);
 
-
-
   const updateTicketChanges = async ()=>{
+    
     try{
-        const res = await fetch(`http://localhost:3000/api/viewissue/${data[0].projectId}`, {
+        const res = await fetch(`/api/viewissue/${data[0].projectId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"
@@ -76,8 +77,7 @@ function IssueNo({data}) {
             description,ticketStatus
         })
         });
-        // const data = await res.json();
-        // console.log('Updated data',res);
+        // router.replace(router.asPath);
     }
     catch (error) {
         console.log('not fetched!',error);
@@ -112,7 +112,7 @@ function IssueNo({data}) {
                         <h2 className='m-0' style={{ "color": "#172b4d", "fontSize": "14px", "fontWeight": "600", "lineHeight": "24px" }}>Description</h2>
                         <div className='description-text-container' onClick={()=>{setIsEditting(true)}}style={{ "fontSize": "14px", "fontWeight": "400", "fontStyle": "normal", "backgroundColor": "#EBECF0", "borderRadius": "5px" }} >
                             {/* <div> */}
-                                <div className={`description-area ${iseditting ? 'd-none':''}`} ><div className='text-main-content p-2' dangerouslySetInnerHTML={{ __html: data[0].description}}/></div>
+                                <div className={`description-area ${iseditting ? 'd-none':''}`} ><div className='text-main-content p-2' dangerouslySetInnerHTML={{ __html: description}}/></div>
                                 <div className={`jodit-area ${iseditting ? '':'d-none'}`}>
                                 <JoditEditor
                                     ref={editor}
@@ -283,7 +283,7 @@ function IssueNo({data}) {
                                     <div className='dropdown-icon'>
                                         <svg width="20" height="24" viewBox="0 0 24 24" role="presentation"><path d="M8.292 10.293a1.009 1.009 0 000 1.419l2.939 2.965c.218.215.5.322.779.322s.556-.107.769-.322l2.93-2.955a1.01 1.01 0 000-1.419.987.987 0 00-1.406 0l-2.298 2.317-2.307-2.327a.99.99 0 00-1.406 0z" fill="currentColor" fillRule="evenodd"></path></svg>
                                     </div> */}
-                                    <TicketStatusDropDown ticketStatus={data[0].ticketStatus} setTicketStatus={setTicketStatus} />
+                                    <TicketStatusDropDown updateTicketChanges={updateTicketChanges} ticketStatus={ticketStatus} setTicketStatus={setTicketStatus} /> 
 
                                 {/* </button> */}
                                 <div className='webapp-planning d-flex align-items-baseline'>
@@ -292,7 +292,7 @@ function IssueNo({data}) {
                                     </div>
                                     <div className='webapp-title d-flex flex-column ' style={{ "paddingLeft": "0px", }}>
                                         {/* <h6 className='m-0' style={{ "fontSize": "11px", "fontWeight": "400", "color": "rgb(66,82,110)" }}> Done</h6> */}
-                                        <h6 className='m-0' style={{ "fontSize": "11px", "fontWeight": "400", "color": "rgb(66,82,110)" }}> {data[0].ticketStatus}</h6>
+                                        <h6 className='m-0' style={{ "fontSize": "11px", "fontWeight": "400", "color": "rgb(66,82,110)" }}> {ticketStatus}</h6>
                                         {/* <p className='m-0 p-0' style={{ "fontSize": "12px", "fontWeight": "400", "color": "rgb(66,82,110)" }}>Board</p> */}
                                     </div>
 

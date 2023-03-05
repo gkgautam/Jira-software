@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import styles from './CustomSelect.module.scss';
 
 function TicketStatusDropDown(props) {
 const options = [
-  { value: 'indevelopment', index:0, label:'To Do'
+  { value: 'todo', index:0, label:'To Do'
   },
   { value: 'blocked', index:1, label:'BLOCKED'
   },
@@ -21,16 +21,15 @@ const options = [
   { value: 'Wontdo', index:7, label:'WONT DO'
   }
 ]
-
-const [dropdownOptions, setDropdownOptions] = useState(options[0].value);
+const [dropdownOptions, setDropdownOptions] = useState(props.ticketStatus);
   return (
     <>
       <div className={`${styles.selector} ticket_status_selector`}>
         <div className={`${styles.options}`}>
             <Select value={dropdownOptions} options={options} onChange={(event)=>{
-              // alert(dropdownOptions);
               setDropdownOptions(options[event.index])
               props.setTicketStatus(event.value)
+              props.updateTicketChanges();
             }} />
         </div>
       </div>

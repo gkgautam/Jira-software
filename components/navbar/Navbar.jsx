@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import JRlogo from "../../public/jira-logo2.png";
@@ -9,6 +9,9 @@ import styles from "./Navbar.module.scss";
 import CreateIssueModal from "../modals/CreateIssueModal";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
+import medium from '../../public/jiraImages/medium.svg';
+import bugLogo from '../../public/jiraImages/Buglogo.svg';
+
 
 
 function Navbar(props)
@@ -18,6 +21,26 @@ function Navbar(props)
   const signOutSession = async () => {
     signOut();
   };
+
+  const [sprintData, setSprintData] = useState([]);
+
+  const fetchData = async () => {
+    const res = await fetch(`${process.env.NODE_ENV=="production"?"https://jira-software.vercel.app/api/fetchIssuesApi":"http://localhost:3000/api/fetchIssuesApi"}`);
+    const data = await res.json();
+    setSprintData(data);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  let flag=[];
+
+  for (let i = 0; i < sprintData.length; i++) {
+    if(sprintData[i].assignee.toLowerCase() === 'govind'){
+      flag.push(sprintData[i]);
+    }
+  }
 
   return (
     <>
@@ -82,12 +105,38 @@ function Navbar(props)
                 >
                   Your Work
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    {/* <Link className="dropdown-item" href="/">
-                      {props.work}
-                    </Link> */}
+                <ul className="dropdown-menu p-0 yourwork-dropdown">
+              
+                  {
+                    flag.length > 0 ? flag.map((filteredTicket, index) => {
+                      return (
+                        <li className="" style={{cursor:'pointer',width:'max-content'}}>
+                    <Link className="dropdown-item" href={`/viewissue/${filteredTicket.projectId}`}>
+                    <div className='subtask-details d-flex justify-content-between p-2' style={{"boxShadow":"0 1px 1px rgba(9,30,66,0.25),0 0 1px 1px rgba(9,30,66,0.13)","borderRadius":"3px"}}>
+                            <div className='left-details'>
+                                <Image src={bugLogo} alt="subtask" />
+                                <a href='' style={{ "textDecoration": "none" }}>
+                                    <span style={{ "fontSize": "12px", "padding": "0 5px" }}>
+                                        RECHARGE-{filteredTicket.projectId.toString().padStart(4,0)}
+                                    </span>
+                                </a>
+                                <span className='align-self-center' style={{ "fontSize": "12px", "padding": "0 2px", "color": "#5e6c84" }}>
+                                    {filteredTicket.summary}
+                                </span>
+                            </div>
+                            <div className='rigth-details d-flex align-items-center ps-1'>
+                                <Image src={medium} alt="priority-medium px-1" />
+                                <div className='status px-1' style={{ "borderRadius": "2px", "backgroundColor": "#E3FCEF","fontSize": "10px", "fontWeight": "700", "color": "#006644" }}>
+                                    {filteredTicket.ticketStatus}
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
                   </li>
+                      )
+                    }) : <li>You dont have any ticket</li>
+                  }
+
                 </ul>
               </li>
               <li className="nav-item dropdown">
