@@ -29,7 +29,7 @@ const [dropdownOptions, setDropdownOptions] = useState(props.ticketStatus);
             <Select value={dropdownOptions} options={options} onChange={(event)=>{
               setDropdownOptions(options[event.index])
               props.setTicketStatus(event.value)
-              props.updateTicketChanges();
+              props.updateTicketChanges(options[event.index].value);
             }} />
         </div>
       </div>
