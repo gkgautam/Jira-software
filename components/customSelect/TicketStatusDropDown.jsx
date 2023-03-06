@@ -20,8 +20,17 @@ const options = [
   },
   { value: 'Wontdo', index:7, label:'WONT DO'
   }
-]
-const [dropdownOptions, setDropdownOptions] = useState(props.ticketStatus);
+];
+  
+let indexOfTicketStatus;
+
+options.map((val)=>{
+  if(val.value == props.ticketStatus){
+    indexOfTicketStatus =val.index;
+  }
+})
+
+const [dropdownOptions, setDropdownOptions] = useState(options[indexOfTicketStatus]);
   return (
     <>
       <div className={`${styles.selector} ticket_status_selector`}>
