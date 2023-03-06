@@ -9,7 +9,7 @@ import TicketStatusDropDown from '../../components/customSelect/TicketStatusDrop
 import Subtask from '../../components/Subtask';
 import dynamic from 'next/dynamic';
 import { getSession } from "next-auth/react";
-import { useRouter } from 'next/router';
+
 
 // export async function getServerSideProps(context) {
 //   const userSession = await getSession(context);
@@ -61,11 +61,10 @@ function IssueNo({data}) {
   const [description, setContent] = useState(data[0].description);
   const [iseditting,setIsEditting] = useState(false);
   const [ticketStatus,setTicketStatus] = useState(data[0].ticketStatus);
-  const router = useRouter();
 
   const editor = useRef(null);
 
-  const updateTicketChanges = async ()=>{
+  const updateTicketChanges = async (newTicketStatus)=>{
     
     try{
         const res = await fetch(`/api/viewissue/${data[0].projectId}`, {
@@ -74,10 +73,9 @@ function IssueNo({data}) {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            description,ticketStatus
+            description,ticketStatus:newTicketStatus
         })
         });
-        // router.replace(router.asPath);
     }
     catch (error) {
         console.log('not fetched!',error);
