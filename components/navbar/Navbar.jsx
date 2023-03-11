@@ -37,7 +37,7 @@ function Navbar(props)
   let flag=[];
 
   for (let i = 0; i < sprintData.length; i++) {
-    if(sprintData[i].assignee.toLowerCase() === 'govind'){
+    if(sprintData[i].assignee.toLowerCase() === session.user.name.toLowerCase()){
       flag.push(sprintData[i]);
     }
   }
