@@ -9,6 +9,7 @@ import TicketStatusDropDown from '../../components/customSelect/TicketStatusDrop
 import Subtask from '../../components/Subtask';
 import dynamic from 'next/dynamic';
 import { getSession } from "next-auth/react";
+import CustomSelectUsers from '../../components/customSelect/CustomSelectUsers';
 
 
 // export async function getServerSideProps(context) {
@@ -61,6 +62,7 @@ function IssueNo({data}) {
   const [description, setContent] = useState(data[0].description);
   const [iseditting,setIsEditting] = useState(false);
   const [ticketStatus,setTicketStatus] = useState(data[0].ticketStatus);
+  const [changeUser,setChangeUser] = useState(false);
 
   const editor = useRef(null);
 
@@ -311,14 +313,27 @@ function IssueNo({data}) {
                                     <div className='assignee p-2 d-flex justify-content-start'>
                                         <span className='mx-0' style={{ "color": "#42526e", "fontSize": "10px", "fontWeight": "600", "width": "40%" }}>Assignee</span>
                                         <div className='comment'>
-                                            <div className='d-flex gap-1'>
+                                            {
+                                                !changeUser ? <>
+                                                <div className='d-flex gap-1' onClick={()=>{setChangeUser(true)}}>
                                                 <div className='individual-asignee' style={{ "borderRadius": "50%", "backgroundColor": "#2258b4", "color": "#fff", "height": "22px", "width": "22px", "fontSize": "11px", "textAlign": "center", "border": "2px solid #fff", "fontWeight": "700" }}>
-                                                    {data[0].assignee.charAt(0).toUpperCase()}
+                                                    {data[0].assignee.name.charAt(0).toUpperCase()}
                                                 </div>
                                                 <div className='commenter-name'>
-                                                    <h2 className='m-0' style={{ "color": "#172b4d", "fontSize": "12px", "fontWeight": "400", "lineHeight": "24px" }}>{data[0].assignee.replace(data[0].assignee[0], data[0].assignee[0].toUpperCase())}</h2>
+                                                    <h2 className='m-0' style={{ "color": "#172b4d", "fontSize": "12px", "fontWeight": "400", "lineHeight": "24px" }}>{data[0].assignee.name.replace(data[0].assignee.name[0], data[0].assignee.name[0].toUpperCase())}</h2>
                                                 </div>
                                             </div>
+                                            </> : <>
+                                                {/* <input autoFocus onBlur={()=>{setChangeUser(false)}} type="text" /> */}
+                                                <CustomSelectUsers
+                                                    // formdata={}
+                                                    // setFormData={}
+                                                    name="assignee"
+                                                    id="reporter"
+                                                    selectedProjectTeam={0}
+                                                     />
+                                            </>
+                                            }
 
                                             <a href='' style={{ "textDecoration": "none" }}>
                                                 <span style={{ "fontSize": "12px" }}>
@@ -334,12 +349,12 @@ function IssueNo({data}) {
                                         <div className='comment'>
                                             <div className='d-flex gap-1 align-items-center'>
                                                 <div className='individual-asignee' style={{ "borderRadius": "50%", "backgroundColor": "#eba317", "color": "#000", "height": "22px", "width": "22px", "fontSize": "11px", "textAlign": "center", "border": "2px solid #fff", "fontWeight": "700" }}>
-                                                {data[0].reporter.charAt(0).toUpperCase()}
+                                                {data[0].reporter.name.charAt(0).toUpperCase()}
                                                 </div>
                                                 <div className='commenter-name'>
                                                     <a href='' style={{ "textDecoration": "none" }}>
                                                         <span style={{ "fontSize": "12px" }}>
-                                                            {data[0].reporter.replace(data[0].reporter[0], data[0].reporter[0].toUpperCase())}
+                                                            {data[0].reporter.name.replace(data[0].reporter.name[0], data[0].reporter.name[0].toUpperCase())}
                                                         </span>
                                                     </a>
                                                 </div>

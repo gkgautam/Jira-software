@@ -19,17 +19,34 @@ const mySchema = new mongoose.Schema({
   description:{
     type:String
   },
-  reporter:{
-    type:String,
-    required:true
-  },
-  assignee:{
-    type:String,
-    required:true
-  },
+  reporter:
+    {
+      name:{
+        type:String,
+        required:true
+      },
+      email:{
+        type:String,
+        required:true
+      }
+    },
+  assignee:
+    {
+      name:{
+        type:String,
+        required:true
+      },
+      email:{
+        type:String,
+        required:true
+      }
+    },
   ticketStatus:{
     type:String,
     default:'todo'
+  },
+  projectTeamId:{
+    type:Number
   }
 },
 {timestamps:true}
