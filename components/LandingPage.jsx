@@ -30,15 +30,15 @@ function LandingPage() {
                         </ul>
                         <ul className="navbar-nav d-flex gap-3 mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <button type="button" style={{ cursor: "not-allowed" }} class="btn btn-primary">Try now</button>
+                                <button type="button" style={{ cursor: "not-allowed" }} className="btn btn-primary">Try now</button>
                             </li>
                             <li className="nav-item">
-                                <button type="button" style={{ cursor: "not-allowed" }} class="btn btn-outline-secondary">Buy Now</button>
+                                <button type="button" style={{ cursor: "not-allowed" }} className="btn btn-outline-secondary">Buy Now</button>
                             </li>
                             <li className="nav-item">
                                 <div className='d-flex'>
                                     <Link href={'/login'}>
-                                        <button type="button" class="btn btn-primary d-flex">
+                                        <button type="button" className="btn btn-primary d-flex">
                                             <Image src={avatar} alt="avatar logo" width={20} height={20} />
                                             Login</button>
                                     </Link>
@@ -52,7 +52,7 @@ function LandingPage() {
             <div className='container m-0'>
                 <div className='row'>
                     <div className='col-5 ps-5 text-center align-items-center d-flex flex-column justify-content-end'>
-                        <h1 className=''>It's Possible</h1>
+                        <h1 className=''>Its Possible</h1>
                         <h1 className=''>with teamwork</h1>
                     </div>
                     <div className='col-7'>
