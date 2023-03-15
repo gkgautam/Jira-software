@@ -5,7 +5,7 @@
 // import Homepage from './homepage';
 // import 'font-awesome/css/font-awesome.min.css'
 // import 'bootstrap/dist/css/bootstrap';
-
+import LandingPage from "../components/LandingPage"
 import Spinner from "../components/spinner/Spinner"
 
 // import RapidBoardBreadcrum from "../components/activeSprintComponents/RapidBoardBreadcrum";
@@ -31,7 +31,7 @@ export default function Home() {
         <RapidBoardBreadcrum/>
         </div> */}
         {/* <Spinner show={true}/> */}
-      <h1>Welcome to Jira</h1>
+        <LandingPage/>
     </>
   )
   

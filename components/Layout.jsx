@@ -23,9 +23,6 @@ function Layout({children}) {
         </div>
         </main>: <div>
         {children}
-        <Link href={'/login'}>
-          login
-        </Link>
         </div>
         
       }
