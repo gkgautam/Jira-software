@@ -17,17 +17,17 @@ const handler = async (req, res) => {
       } else {
         projectId = 1;
       }
-      const data = new CreateIssue({summary,description,reporter,assignee,issueType,issuePriority,projectId,ticketStatus});
+      const data = new CreateIssue({summary,description,reporter,assignee,issueType,issuePriority,projectId,ticketStatus,projectTeamId:selectedProjectTeam});
       const result = await data.save();
       if(result){
 
-        const findTeam = await ProjectTeam.findOne({"teamMembers.memberName":assignee});
+        const findTeam = await ProjectTeam.findOne({"teamMembers.memberEmail":assignee.email});
         const teamMembers = findTeam.teamMembers;
         let member = {};
         let index = 0;
   
         for (let i = 0; i < teamMembers.length; i++) {
-          if(teamMembers[i].memberName == assignee)
+          if(teamMembers[i].memberEmail == assignee.email)
           {
             member = teamMembers[i];
             index = i;

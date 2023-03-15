@@ -29,7 +29,7 @@ function SprintTicket({ticketdata,color}) {
                 </div>
                 <div className='col-3 d-flex align-items-center justify-content-center gap-2 p-0 m-0'>
                     <div className='individual-asignee' style={{ "borderRadius": "50%", "backgroundColor": `${color}`, "color": "#000", "height": "24px", "width": "24px", "fontSize": "13px", "textAlign": "center", "border": "2px solid #fff" }}>
-                        {ticketdata.assignee.charAt(0).toUpperCase()}
+                        {ticketdata.assignee.name.charAt(0).toUpperCase()}
                     </div>
                     <div className='ticket-num'>
         <span className='small'>RECHARGE-{ticketdata.projectId.toString().padStart(4,0)}</span>

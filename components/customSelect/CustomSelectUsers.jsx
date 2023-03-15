@@ -31,7 +31,10 @@ function CustomSelectUsers(props) {
   if (emp) {
     for (let i = 0; i < emp.length; i++) {
       options.push({
-        value: emp[i].memberName,
+        value: {
+          name: emp[i].memberName,
+          email: emp[i].memberEmail
+        },
         index: i,
         label: (
           <div className="selectField d-flex align-items-center px-1 ps-2">

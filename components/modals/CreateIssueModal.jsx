@@ -18,8 +18,8 @@ function CreateIssueModal({ isVisible, onClose }) {
     issuePriority: "",
     summary: "",
     description: "",
-    reporter: "",
-    assignee: "",
+    reporter: {},
+    assignee: {},
     selectedProjectTeam:0
   });
 
@@ -39,7 +39,6 @@ function CreateIssueModal({ isVisible, onClose }) {
     fetchProject();
   },[]);
   const submitIssueform = async (e) => {
-    console.log('saradata',formdata);
     e.preventDefault();
     const {
       summary,
