@@ -10,10 +10,18 @@ export async function getServerSideProps(ctx){
                 permanent:false
             }
         }
-    }
+    } 
     return {
         props:{}
     }
+    // else{
+    //     return {
+    //         redirect:{
+    //             destination:'/dashboard',
+    //             permanent:false
+    //         }
+    //     }
+    // }
 } 
 function dashboard() {
   return (

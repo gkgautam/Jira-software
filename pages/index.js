@@ -5,10 +5,31 @@
 // import Homepage from './homepage';
 // import 'font-awesome/css/font-awesome.min.css'
 // import 'bootstrap/dist/css/bootstrap';
-// import WelcomeLandingPage from "../components/WelcomeLandingPage"
+import LandingPage from "../components/LandingPage"
 import Spinner from "../components/spinner/Spinner"
 
 // import RapidBoardBreadcrum from "../components/activeSprintComponents/RapidBoardBreadcrum";
+// import { getSession } from "next-auth/react"
+
+// export async function getServerSideProps(ctx){
+//   const userSession = await getSession(ctx);
+//   if(!userSession){
+//     return {
+//       redirect:{
+//         destination:'/login',
+//         permanent:false,
+//       }
+//     }
+//   }
+//  else{
+//   return {
+//     redirect:{
+//       destination:'/dashboard',
+//       permanent:true,
+//     }
+//   }
+//  }
+// }
 
 export default function Home() {
   return (
@@ -31,7 +52,7 @@ export default function Home() {
         <RapidBoardBreadcrum/>
         </div> */}
         {/* <Spinner show={true}/> */}
-        {/* <WelcomeLandingPage/> */}
+        <LandingPage/>
     </>
   )
   
