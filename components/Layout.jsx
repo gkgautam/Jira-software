@@ -20,6 +20,7 @@ function Layout({children}) {
         </div>
         <div className='page-content-container  col-9 p-3 ' style={{"left":"316px","top":"54px","position":"relative"}}>
         {children}
+        {console.log('mychild',children)}
         </div>
         </main>: <div>
         {children}

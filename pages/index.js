@@ -9,6 +9,27 @@ import LandingPage from "../components/LandingPage"
 import Spinner from "../components/spinner/Spinner"
 
 // import RapidBoardBreadcrum from "../components/activeSprintComponents/RapidBoardBreadcrum";
+// import { getSession } from "next-auth/react"
+
+// export async function getServerSideProps(ctx){
+//   const userSession = await getSession(ctx);
+//   if(!userSession){
+//     return {
+//       redirect:{
+//         destination:'/login',
+//         permanent:false,
+//       }
+//     }
+//   }
+//  else{
+//   return {
+//     redirect:{
+//       destination:'/dashboard',
+//       permanent:true,
+//     }
+//   }
+//  }
+// }
 
 export default function Home() {
   return (
