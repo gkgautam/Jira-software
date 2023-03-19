@@ -3,6 +3,7 @@ import Navbar from '../components/navbar/Navbar';
 import Navigation from './navigation/navigation/Navigation';
 import { useSession, signOut } from "next-auth/react";
 import Link from 'next/link';
+import LandingPage from './LandingPage';
 function Layout({children}) {
   const { data: session } = useSession();
   const signOutSession= async ()=>{
@@ -20,9 +21,11 @@ function Layout({children}) {
         </div>
         <div className='page-content-container  col-9 p-3 ' style={{"left":"316px","top":"54px","position":"relative"}}>
         {children}
+        {console.log('mychild',children)}
         </div>
         </main>: <div>
         {children}
+        <LandingPage/>
         </div>
         
       }

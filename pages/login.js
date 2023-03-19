@@ -15,7 +15,7 @@ export async function getServerSideProps(context) {
   if(userSession){
     return {
       redirect:{
-        destination:"/",
+        destination:"/dashboard",
         permanent: false
       }
     }
@@ -39,7 +39,7 @@ const Login = () => {
   });
 
   async function handleGoogleSignin(){
-    signIn("google", { callbackUrl: "http://localhost:3000" });
+    signIn("google", { callbackUrl: "http://localhost:3000/dashboard" });
   }
 
   // async function onSubmit(values){
@@ -90,7 +90,7 @@ const Login = () => {
       redirect:false,
       email:values.email,
       password: values.password,
-      callbackUrl:"/"
+      callbackUrl:"/dashboard"
     });
 
     if(status.ok){
