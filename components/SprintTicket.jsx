@@ -12,8 +12,8 @@ function SprintTicket({ticketdata,color}) {
     return (
         <>
         {/* <h1>{color}</h1> */}
-        <Link href={`/viewissue/${ticketdata.projectId}`}>
-            <div className='border-bottom border-left w-100 pointer pe-auto ticket-row row p-0 m-0 py-1' >
+        <Link href={`/viewissue/${ticketdata.projectId}`} >
+            <div className='border-bottom border-left w-100 pointer pe-auto ticket-row row p-0 m-0 py-1' role='button' >
                 <div className='col-9  d-flex justify-content-between'>
                     <div className='ticket-summary d-flex'>
                         <div className='ticket-logo d-flex pe-2'>

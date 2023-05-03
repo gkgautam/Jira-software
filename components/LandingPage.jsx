@@ -44,6 +44,15 @@ function LandingPage() {
                                     </Link>
                                 </div>
                             </li>
+                            <li className="nav-item">
+                                <div className='d-flex'>
+                                    <Link href={'/login'}>
+                                        <button type="button" className="btn btn-primary d-flex">
+                                            <Image src={avatar} alt="avatar logo" width={20} height={20} />
+                                            Guest</button>
+                                    </Link>
+                                </div>
+                            </li>
 
                         </ul>
                     </div>
