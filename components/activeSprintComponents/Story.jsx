@@ -13,7 +13,7 @@ function Story(props) {
                 </div>
                 <Image src={storyLogo} alt="Storylogo" />
                 <Link href={`/viewissue/${props.storydata.projectId}`}>
-                    <span style={{ "fontSize": "12px", "padding": "0 5px","color":"blue" }}>
+                    <span role="button" style={{ "fontSize": "12px", "padding": "0 5px","color":"blue" }}>
                         RECHARGE-{props.storydata.projectId.toString().padStart(4,0)}
                     </span>
                 </Link>
