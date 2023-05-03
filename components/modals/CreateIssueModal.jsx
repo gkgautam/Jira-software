@@ -10,7 +10,7 @@ function CreateIssueModal({ isVisible, onClose }) {
   const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
   const [content, setContent] = useState("");
   const [projectTeam, setProjectTeam] = useState([]);
-  const [selectedProjectTeam, setSelectedProjectTeam] = useState(0);
+  const [selectedProjectTeam, setSelectedProjectTeam] = useState('0');
   const editor = useRef(null);
   // const [content, setContent] = useState('');
   const [formdata, setFormData] = useState({
@@ -20,7 +20,7 @@ function CreateIssueModal({ isVisible, onClose }) {
     description: "",
     reporter: {},
     assignee: {},
-    selectedProjectTeam:0
+    selectedProjectTeam:'0'
   });
 
   // useEffect(()=>{
@@ -132,8 +132,8 @@ function CreateIssueModal({ isVisible, onClose }) {
 
         <form>
           <div className="form-group">
-            <label htmlFor="issueType">Project</label>
-            <select name="" className="form-select" onChange={(e)=>{setSelectedProjectTeam(e.target.value);console.log(selectedProjectTeam);setFormData({ ...formdata, ["selectedProjectTeam"]: projectTeam[e.target.value].teamId })}}>
+            <label htmlFor="selectedTeam">Project</label>
+            <select name="" className="form-select" onChange={(e)=>{setSelectedProjectTeam(e.target.value);console.log(typeof e.target.value);setFormData({ ...formdata, ["selectedProjectTeam"]: projectTeam[e.target.value].teamId })}}>
             {
               projectTeam.map((item,index)=>{
                 return (<option key={index} value={index}>{item.teamName}</option>)

@@ -326,14 +326,14 @@ const Login = () => {
               <div className="text-center my-1 select-none w-md-80 w-100">
                 <p className="" style={{fontSize:"14px",color:"#97A0AF"}}>OR</p>
               </div>
-              {/* <button
+              <button
                   onClick={formik2.handleSubmit}
                   type="submit"
-                  className="w-100 p-2 fw-medium text-white border-0 rounded hover:bg-[#196be6] active:bg-[#154da1]"
+                  className="w-100 mb-3 p-2 fw-medium text-white border-0 rounded hover:bg-[#196be6] active:bg-[#154da1]"
                   style={{backgroundColor:"#0052CC"}}
                 >
                   Guest visit
-                </button> */}
+                </button>
               <div className="text-center my-1 w-md-80 w-full">
                 <button
                   type="button"
