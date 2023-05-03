@@ -41,6 +41,16 @@ const Login = () => {
     onSubmit
   });
 
+  //custom validation
+  const formik2 = useFormik({
+    initialValues:{
+      email:"govind2@gmail.com",
+      password:"Test@123"
+    },
+    validate:loginValidate,
+    onSubmit
+  });
+
   async function handleGoogleSignin(){
     signIn("google", { callbackUrl: "http://localhost:3000/dashboard" });
   }
@@ -316,6 +326,14 @@ const Login = () => {
               <div className="text-center my-1 select-none w-md-80 w-100">
                 <p className="" style={{fontSize:"14px",color:"#97A0AF"}}>OR</p>
               </div>
+              <button
+                  onClick={formik2.handleSubmit}
+                  type="submit"
+                  className="w-100 p-2 fw-medium text-white border-0 rounded hover:bg-[#196be6] active:bg-[#154da1]"
+                  style={{backgroundColor:"#0052CC"}}
+                >
+                  Guest visit
+                </button>
               <div className="text-center my-1 w-md-80 w-full">
                 <button
                   type="button"
@@ -361,6 +379,8 @@ const Login = () => {
             </Link>
           </div>
             </form>
+            {/* <form onSubmit={formik2.handleSubmit}> */}
+              {/* </form> */}
           </div>
         </div>
       </div>

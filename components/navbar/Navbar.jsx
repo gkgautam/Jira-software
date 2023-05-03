@@ -58,6 +58,7 @@ function Navbar(props)
             className=""
             style={{ "marginRight": "10px" }}
           />
+          <Link href={'/dashboard'}>
           <a
             className="navbar-brand"
             style={{
@@ -77,6 +78,7 @@ function Navbar(props)
               Jira Software{" "}
             </span>
           </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -139,9 +141,9 @@ function Navbar(props)
 
                 </ul>
               </li>
-              <li className="nav-item dropdown">
+              <li style={{ cursor: "not-allowed" }} className="nav-item dropdown">
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle pe-none"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -175,9 +177,9 @@ function Navbar(props)
                   </li>
                 </ul>
               </li>
-              <li className="nav-item dropdown">
+              <li style={{ cursor: "not-allowed" }} className="nav-item dropdown">
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle pe-none"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -211,9 +213,9 @@ function Navbar(props)
                   </li>
                 </ul>
               </li>
-              <li className="nav-item dropdown">
+              <li style={{ cursor: "not-allowed" }} className="nav-item dropdown">
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle pe-none"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -273,9 +275,10 @@ function Navbar(props)
             <li><a className="dropdown-item" href="#">Something else here</a></li> */}
                 </ul>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown d-flex align-items-center">
                 {session ? (
-                  <button onClick={signOutSession}>Logout</button>
+//                   <button className="bg-blue-500 text-white rounded px-1" onClick={signOutSession}>Logout</button>
+                  <button style={{background:"red",color:"white",borderRadius:"5px",border:"0"}} onClick={signOutSession}>Logout</button>
                 ) : (
                   <a
                     className="nav-link dropdown-toggle"
@@ -314,9 +317,9 @@ function Navbar(props)
                   </li>
                 </ul>
               </li>
-              <li className="nav-item dropdown">
+              <li style={{cursor: "not-allowed"}} className="nav-item dropdown">
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle pe-none"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
